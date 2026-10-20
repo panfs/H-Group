@@ -7,19 +7,21 @@ stacks:
 discarded:
   - b4
 players:
+  - clueGiver: true
+    cards:
+      - type: x
+      - type: x
+      - type: x
+      - type: x
+        below: Discard
   - cards:
       - type: x
-      - type: x
-      - type: x
-      - type: x
-  - cards:
-      - type: x
       - type: 2
-        below: Red 2?
+        middleNote: r2?
       - type: 2
-        below: Red 2?
+        middleNote: r2?
       - type: 2
-        below: Red 2?
+        middleNote: r2?
   - cards:
       - type: x
       - type: x

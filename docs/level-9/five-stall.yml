@@ -6,7 +6,6 @@ stacks:
   - p: 0
 bigText:
   text: Early Game
-  color: black
 players:
   - clueGiver: true
     cards:
@@ -21,6 +20,7 @@ players:
       - type: x
       - type: g5
         clue: 5
+        below: Stall
       - type: x
   - cards:
       - type: x

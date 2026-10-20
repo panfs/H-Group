@@ -20,21 +20,19 @@ import HesitationBlindPlay from "./level-23/hesitation-blind-play.yml";
 ### The 4 Charm
 
 - When a _Play Clue_ is given to a previously untouched 4 that is not yet playable, Bob must react:
-  - The first interpretation is that it is a _Prompt_.
-  - If Bob has no matching cards in his hand, then a _Prompt_ is impossible.
-  - The second interpretation is that it is a _Finesse_.
-  - If Bob sees that he would have to **blind-play one card** or **blind-play two cards** to fulfill a _Finesse_, then he should assume that it is a _Finesse_.
-  - If Bob sees that he would have to **blind-play three cards** in their hand to fulfill the _Finesse_, then a _Finesse_ is unlikely.
-  - The third interpretation is that it is a _Critical Color Bluff_.
-  - The fourth interpretation is that it is a _4 Double Bluff_.
-  - If Bob sees that Cathy does not have a playable card on her _Finesse Position_, then a _4 Double Bluff_ is impossible (or very unlikely).
+  - The first interpretation is that it is a _Prompt_, but if Bob has no matching cards in his hand, then a _Prompt_ is impossible.
+  - The second interpretation is that it is a _Finesse_:
+    - If Bob sees that he would have to **blind-play one card** or **blind-play two cards** to fulfill a _Finesse_, then he should assume that it is a _Finesse_.
+    - If Bob sees that he would have to **blind-play three cards** in their hand to fulfill the _Finesse_, then a _Finesse_ is unlikely.
+  - The third interpretation is that it is a _Critical Color Bluff_, but this would not be the case if the touched 4 is not critical.
+  - The fourth interpretation is that it is a _4 Double Bluff_, but if Bob sees that Cathy does not have a playable card on her _Finesse Position_, then a _4 Double Bluff_ is impossible (or very unlikely).
   - The fifth interpretation is that it is a _4 Charm_, meaning that Bob should blind-play his _Fourth Finesse Position_.
 - For example, in a 4-player game:
   - It is the first turn and nothing is played on the stacks.
   - Alice clues number 4 clue to Cathy, touching a red 4 on slot 1 as a _Play Clue_.
   - Bob knows that normally, this would be a _Finesse_ on the red 4, meaning that he should blind-play a red 1, a red 2, and a red 3. (Bob does not see any red cards in anyone else's hands.)
   - Since the _Finesse_ requires three blind-plays, it is unlikely, and Bob knows he is supposed to revert to a different interpretation.
-  - Bob sees that Cathy has a currently not playable card on her _Finesse Position_, so a _4 Double Bluff_ is impossible.
+  - Bob sees that Cathy's _Finesse Position_ card is unplayable, so a _4 Double Bluff_ is impossible.
   - Thus, Bob knows that this must be a _4 Charm_. He blind-plays his _Fourth Finesse Position_. It is a blue 1 and it successfully plays.
 
 <FourCharm />
@@ -54,7 +52,7 @@ import HesitationBlindPlay from "./level-23/hesitation-blind-play.yml";
 - For example, in a 3-player game:
   - All 1's are played on the stacks.
   - Alice discards a known red 2 as a _Gentleman's Discard_.
-  - Bob sees that Cathy's hand is completely unclued and is as follows, from left to right: `red 1 (trash), red 2, green 1 (trash), green 1 (trash), blue 1 (trash)`
+  - Bob sees that Cathy's hand is completely unclued and is, from newest to oldest: `red 1 (trash), red 2, green 1 (trash), green 1 (trash), blue 1 (trash)`
   - Bob knows that normally, the _Gentleman's Discard_ promises that the other copy of the red 2 is on _Finesse Position_. But Alice is _Lying_ to Cathy, because she will go on to misplay the red 1 as the red 2.
   - Bob knows that it would be pointless for Alice to perform a _Gentleman's Discard_ and then for Bob to give a _Fix Clue_, as that would waste a clue. So, if Alice is not making a mistake, she must be trying to communicate something extra.
   - Bob knows that this must be a _Blaze Discard_ and he must blind-play the _Finesse Position_ that matches the _Finesse Position_ of the other card. In this case, since the red 2 is on Cathy's _Second Finesse Position_ (slot 2), Bob must play his _Second Finesse Position_ (slot 2).
@@ -90,6 +88,7 @@ import HesitationBlindPlay from "./level-23/hesitation-blind-play.yml";
   - Red 1 and all of the other 2's are played on the stacks.
   - The team has 5 clues. Nobody on the team has any cards clued in their hand.
   - Alice clues number 3 to Bob, touching a blue 3 on slot 1 as a _Play Clue_. (The team is now at 4 clues.)
+  - Bob knows that Alice's clue could be a direct _Play Clue_ on a yellow 3, green 3, blue 3, or purple 3. However, it could also be a red 3 if Alice intends a _Reverse Finesse_ through Cathy's red 2, so Bob must allow Cathy a chance to prove whether that is the case.
   - Bob discards. (The team is now at 5 clues.)
   - From Cathy's perspective, Bob was supposed to play the blue 3 immediately instead of discarding.
   - Cathy knows that since the team has so many clues available, this cannot be a _Scream Discard_ from Bob. (_Scream Discards_ are only typically done when the team is at 0 or 1 clues.)

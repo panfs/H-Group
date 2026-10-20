@@ -20,6 +20,8 @@ players:
       - type: 5
   - cards:
       - type: y4
+        clue: y
+        below: Play
       - type: x
       - type: x
       - type: x

@@ -19,6 +19,7 @@ import ChopMovePrompt from "./level-4/chop-move-prompt.yml";
 - Normally, players discard their oldest (rightmost) unclued card. However, sometimes a player can know that an unclued card is very important.
 - A _Chop Move_ is a special kind of move that indicates to a player that the unclued card that is currently on their chop is very important.
 - After the _Chop Move_, the player considers the card on their chop to be touched with an "invisible" clue. Thus, their chop will "move" to the next rightmost unclued card.
+- All players should mark _Chop Moved_ cards with a "cm" note. Hanab Live will then display a white border around those cards.
 - A _Chop Move_ is permanent, meaning that a _Chop Moved_ card should not be discarded for the remainder of the game.
 - The three simplest kinds of _Chop Moves_ are listed below. (In levels 6 and 7, two additional common kinds of _Chop Moves_ will be introduced.)
 
@@ -41,7 +42,7 @@ import ChopMovePrompt from "./level-4/chop-move-prompt.yml";
 
 - Most of the time, the _Trash Chop Move_ is done for a single card (meaning that the trash card that was clued was one-away from chop). However, you can also use the _Trash Chop Move_ to _Chop Move_ multiple cards.
 - For example, in a 3-player game:
-  - All of the 1's have been played on the stacks.
+  - All of the 1's are played on the stacks.
   - Bob has a completely unclued hand.
   - Alice clues 1's to Bob, which touches a 1 in his slot 1.
   - Bob _Chop Moves_ his slot 2, his slot 3, his slot 4, and his slot 5 (a quadruple _Chop Move_).
@@ -89,7 +90,7 @@ import ChopMovePrompt from "./level-4/chop-move-prompt.yml";
 
 <FivesChopMove2 />
 
-- Note that the _5's Chop Move_ is different from the _Trash Chop Move_ in that you can only chop move **one** card with it. Thus, if you clue a 5 and it is **two** (or more) slots away from the chop, then it is a _Play Clue_ on the 5.
+- Note that the _5's Chop Move_ is different from the _Trash Chop Move_ in that you can only _Chop Move_ **one** card with it. Thus, if you clue a 5 and it is **two** (or more) slots away from the chop, then it is a _Play Clue_ on the 5.
   - When counting how far away from chop a card is, you should only look at **unclued** cards.
 - Remember that _5 Stalls_ take precedence over _5's Chop Moves_. Thus, if a number 5 clue **could** just be a _5 Stall_ (e.g. it is the _Early Game_), then it does not _Chop Move_ anything.
 - For level 19 players, see the _[Early 5's Chop Move](level-19.mdx#the-early-5s-chop-move)_.
@@ -138,7 +139,7 @@ import ChopMovePrompt from "./level-4/chop-move-prompt.yml";
 
 - Once a card has been _Chop Moved_ and is no longer in danger of being discarded, it is treated as an already-clued card with regards to new clues given to that hand.
 - For example, in a 3-player game:
-  - All of the 1's have been played on the stacks.
+  - All of the 1's are played on the stacks.
   - Bob has a completely unclued hand.
   - Alice clues number 1 to Bob, which touches a 1 on Bob's slot 4 as a _Trash Chop Move_.
   - Bob discards the 1.

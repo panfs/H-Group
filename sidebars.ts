@@ -197,6 +197,7 @@ const sidebars: SidebarsConfig = {
         "variant-specific/number-blind",
         "variant-specific/odds-and-evens",
         "variant-specific/omni",
+        "variant-specific/orange",
         "variant-specific/pink",
         "variant-specific/pink-omni",
         "variant-specific/prism",
@@ -215,10 +216,90 @@ const sidebars: SidebarsConfig = {
     {
       "Challenge Questions": [
         "challenge-questions",
-        "challenge-questions/level-2",
-        "challenge-questions/level-4",
-        "challenge-questions/level-6",
-        "challenge-questions/level-8",
+        {
+          "Level 2": [
+            "challenge-questions/level-2",
+            "challenge-questions/level-2-early-game",
+            "challenge-questions/level-2-two-possibilities-i",
+            "challenge-questions/level-2-two-possibilities-ii",
+            "challenge-questions/level-2-reverse-i",
+            "challenge-questions/level-2-reverse-ii",
+            "challenge-questions/level-2-reverse-iii",
+            "challenge-questions/level-2-play-or-save",
+            "challenge-questions/level-2-find-the-best-clue-i",
+            "challenge-questions/level-2-find-the-best-clue-ii",
+            "challenge-questions/level-2-find-the-best-clue-iii",
+          ],
+        },
+        {
+          "Level 3": [
+            "challenge-questions/level-3",
+            "challenge-questions/level-3-playing-multiple-1-s-i",
+            "challenge-questions/level-3-playing-multiple-1-s-ii",
+            "challenge-questions/level-3-playing-multiple-1-s-iii",
+            "challenge-questions/level-3-an-unexpected-discard",
+          ],
+        },
+        {
+          "Level 4": [
+            "challenge-questions/level-4",
+            "challenge-questions/level-4-a-wasted-clue",
+            "challenge-questions/level-4-5's-chop-move",
+            "challenge-questions/level-4-order-is-important",
+            "challenge-questions/level-4-focus-when-chop-moved",
+          ],
+        },
+        {
+          "Level 5": [
+            "challenge-questions/level-5",
+            "challenge-questions/level-5-what-s-hidden",
+            "challenge-questions/level-5-multiple-possibilities",
+            "challenge-questions/level-5-two-finesses-in-a-row",
+            "challenge-questions/level-5-a-tricky-spot-i",
+            "challenge-questions/level-5-a-tricky-spot-ii",
+            "challenge-questions/level-5-bob-is-lazy",
+          ],
+        },
+        {
+          "Level 6": [
+            "challenge-questions/level-6",
+            "challenge-questions/level-6-filling-in-i",
+            "challenge-questions/level-6-filling-in-ii",
+            "challenge-questions/level-6-tempo-or-trash",
+          ],
+        },
+        {
+          "Level 7": [
+            "challenge-questions/level-7",
+            "challenge-questions/level-7-alice-is-forgetful",
+            "challenge-questions/level-7-bob-is-forgetful",
+            "challenge-questions/level-7-screaming-into-the-void",
+            "challenge-questions/level-7-the-silent-scream",
+            "challenge-questions/level-7-alice-loves-garbage",
+            "challenge-questions/level-7-too-few-clues",
+            "challenge-questions/level-7-another-scream-discard",
+            "challenge-questions/level-7-should-this-blind-play",
+          ],
+        },
+        {
+          "Level 8": [
+            "challenge-questions/level-8",
+            "challenge-questions/level-8-5-cards-left",
+            "challenge-questions/level-8-3-cards-left",
+            "challenge-questions/level-8-2-cards-left",
+          ],
+        },
+      ],
+    },
+    {
+      "More Examples": [
+        "examples/pestilent-double-bluff",
+        "examples/pull-double-finesse",
+        "examples/unnecessary",
+        "examples/purge-bluff",
+        "examples/rank-choice-ejection",
+        "examples/self-color-bluffs",
+        "examples/surreptitious-finesse",
       ],
     },
     "glossary",

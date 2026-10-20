@@ -4,6 +4,9 @@ stacks:
   - g: 0
   - b: 3
   - p: 0
+bigText:
+  text: Must clue
+  color: cyan
 players:
   - clueGiver: true
     cards:
@@ -20,7 +23,7 @@ players:
       - type: g3
         border: false
       - type: b4
-        below: (b)
+        middleNote: b
       - type: r1
         border: false
   - cards:
@@ -31,6 +34,6 @@ players:
       - type: y1
         border: false
       - type: r2
-        below: (2)
+        middleNote: 2
       - type: y2
-        below: (2)
+        middleNote: 2

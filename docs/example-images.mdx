@@ -30,8 +30,11 @@ import TrashResult from "./example-images/trash.yml";
 import BigTextSource from "!raw-loader!./example-images/big-text.yml";
 import BigTextResult from "./example-images/big-text.yml";
 
-import SuitsSource from "!raw-loader!./example-images/suits.yml";
-import SuitsResult from "./example-images/suits.yml";
+import Suits1Source from "!raw-loader!./example-images/suits-1.yml";
+import Suits1Result from "./example-images/suits-1.yml";
+
+import Suits2Source from "!raw-loader!./example-images/suits-2.yml";
+import Suits2Result from "./example-images/suits-2.yml";
 
 export const Code = ({ code }) => (
   <Highlight code={code} language="yaml">
@@ -104,7 +107,7 @@ These are general guidelines that should be followed when creating or modifying 
     - Cards that _have_ been touched by a clue are partially identified. (For example `type: 2`.)
     - Additionally, if a note has been written, put it in the `middleNote` attribute.
     - Use multiple `type`s sparingly, and only when relevant to the variant (i.e. rainbow/pink).
-  - Usually do not identify cards in the clue giver's or clue receiver's hand.
+  - Usually do not identify cards in the clue giver's or the reacting player's hand.
     - Cards that are seen by only _some_ players should have their identities _above_ the card. (For instance: `above: Red 2`.)
 - If a clue is given, always include who gives it using the `clueGiver: true` attribute.
   - The clue giver is usually Alice.
@@ -116,7 +119,7 @@ These are general guidelines that should be followed when creating or modifying 
     - Use shorthand notation, and include all possibilities:
       - Fully identified: `b2`
       - Partially identified: `b23`, `ryg2`
-      - Chop moved: `cm`. Additionally chop moved cards should have `cm: true` to draw a white border.
+      - _Chop Moved_: `cm`. Additionally, _Chop Moved_ cards should have `cm: true` to draw a white border.
       - Known trash: `kt`. Additionally, known trash should have `trash: true` to draw a trash can.
   - Other cards whose identities are inferred from the given clue should have a black message _below_ the card. (For example `below: Finesse`.)
     - It is not necessary to write notes on those cards, as they will usually blind play right away.
@@ -124,7 +127,7 @@ These are general guidelines that should be followed when creating or modifying 
 - Illegal clues and/or misplays should clearly be marked in `red` color.
 - Mistakes or suboptimal clues should be marked in `orange` color.
 - Alternative actions (discards, plays) should be marked `below:` in cyan color.
-  - The player whose action it is should be marked with `clueGiver: true`.
+  - The player whose action it is should be marked with `clueGiver: true` or `zeroClues: true`.
 - Other information about cards should be marked `below:`.
 
 Each example is different, these are guidelines, use common judgment.
@@ -227,17 +230,30 @@ For keywords "Bluff", "Finesse" and "Illegal!", color is ignored.
 Some variant-specific suits can be added via `suits`, which contains the mapping from the letter indicating the suit to the part of the filenames of card images and pips.
 Currently these variant suits are supported:
 
+Alternative suits:
+
 - black
 - brown
+- gray
+- muddy
 - null (needs to be in quotes because normally `null` is a YAML keyword)
 - omni
+- orange
 - pink
 - prism-rygbp
 - teal
 - white
 
-Standard suits don't need to be repeated in `suits`.
-
 This is done to be able to differentiate between suits which commonly use the same letter, e.g. or "i" for both prism and pink.
 
-<Example code={SuitsSource} Image={SuitsResult} />
+Standard suits that don't need to be repeated in `suits`:
+
+- red
+- yellow
+- green
+- blue
+- purple
+- multi
+
+<Example code={Suits1Source} Image={Suits1Result} />
+<Example code={Suits2Source} Image={Suits2Result} />

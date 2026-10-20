@@ -18,4 +18,5 @@ players:
       - type: x
       - type: 4
         clue: 4
+        below: Play
       - type: x

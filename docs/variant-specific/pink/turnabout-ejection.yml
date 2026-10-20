@@ -18,6 +18,7 @@ players:
       - type: x
       - type: x
         above: Blue 1
+        below: Ejection
       - type: x
       - type: x
       - type: x
@@ -27,6 +28,8 @@ players:
       - type: x
       - type: x
       - type: rygbi12345
+        clue: 5
         orange: 5
         above: Pink 1
-        clue: 5
+        middleNote: i1
+        below: Play

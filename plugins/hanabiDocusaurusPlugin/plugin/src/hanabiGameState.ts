@@ -23,6 +23,7 @@ const textObject = z
     text: z
       .string()
       .min(1)
+      // eslint-disable-next-line unicorn/max-nested-calls
       .or(z.array(z.string().min(1)).min(1).readonly()),
     color: z.string().min(1).optional(),
   })
@@ -73,8 +74,11 @@ const card = z
      */
     above: z.string().min(1).or(textObject).optional(),
 
-    /** A text label in the middle of the card. (This cannot be a multi-line string.) */
-    middleNote: z.coerce.string().min(1).optional(),
+    /**
+     * A text label in the middle of the card. (If the label is too long, it would wrap to a second
+     * line and look buggy, so we limit the amount of characters.)
+     */
+    middleNote: z.coerce.string().min(1).max(6).optional(),
 
     /** A text label below the card. Can be either a string or an object representing a string. */
     below: z.string().min(1).or(textObject).optional(),
@@ -86,6 +90,7 @@ const player = z
   .object({
     name: z.coerce.string().min(1).optional(),
     clueGiver: z.boolean().optional(),
+    zeroClues: z.boolean().optional(),
     cards: z.array(card).readonly(),
     offset: z.int().optional(),
   })
@@ -119,6 +124,7 @@ export const hanabiGameStateSchema = z
     discarded: z.array(cardType).readonly().optional(),
     bigText: bigText.optional(),
     players: z
+      // eslint-disable-next-line unicorn/max-nested-calls
       .array(player.or(text).or(space).or(z.literal("space")))
       .min(1)
       .readonly(),
@@ -140,5 +146,6 @@ export interface Text extends z.infer<typeof text> {}
 
 export interface Space extends z.infer<typeof space> {}
 
-export interface HanabiGameState
-  extends z.infer<typeof hanabiGameStateSchema> {}
+export interface HanabiGameState extends z.infer<
+  typeof hanabiGameStateSchema
+> {}

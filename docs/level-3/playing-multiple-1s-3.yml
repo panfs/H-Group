@@ -38,7 +38,6 @@ players:
             - Hand
             - + Chop
           color: gray
-
   - clueGiver: true
     cards:
       - type: x

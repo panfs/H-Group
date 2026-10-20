@@ -20,10 +20,10 @@ function HomepageHeader() {
             message: "Strategies for ",
           })}
           <a
-            id="landing-page-hanabi-link"
             href="https://boardgamegeek.com/boardgame/98778/hanabi"
-            target="_blank"
+            id="landing-page-hanabi-link"
             rel="noopener noreferrer"
+            target="_blank"
           >
             <Translate>Hanabi</Translate>
           </a>

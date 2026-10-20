@@ -6,10 +6,12 @@ import BeginnersGuideProgress from "@site/src/beginnersGuide.tsx";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import EarlyGameQuestion4 from "./early-game-question-4/early-game-question-4.yml";
+import EarlyGameAnswer4 from "./early-game-question-4/early-game-answer-4.yml";
 
 <BeginnersGuideProgress id="early-game-question-4" />
 
 <Tabs
+  queryString="tab"
   defaultValue="question"
   values={[
     {label: 'Question', value: 'question'},
@@ -20,12 +22,14 @@ import EarlyGameQuestion4 from "./early-game-question-4/early-game-question-4.ym
 - It is currently the _Early Game_. There is 1 clue token left.
 - What action should Alice perform?
 
+<EarlyGameQuestion4 />
+
 </TabItem>
 <TabItem value="solution">
 
-- At level 1, there are no legal actions that can be performed. Thus, Alice must discard.
+- With beginner conventions, there are no legal actions that can be performed. Thus, Alice must discard.
+
+<EarlyGameAnswer4 />
 
 </TabItem>
 </Tabs>
-
-<EarlyGameQuestion4 />

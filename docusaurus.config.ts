@@ -3,18 +3,26 @@ import type { Config } from "@docusaurus/types";
 
 const config: Config = {
   title: "H-Group Conventions",
+<<<<<<< HEAD
   tagline: undefined,
   favicon: "img/favicon.ico",
 
   url: "https://trcyx.github.io",
   baseUrl: "/H-Group/",
+=======
+  url: "https://hanabi.github.io",
+  baseUrl: "/",
+  favicon: "img/favicon.ico",
+>>>>>>> upstream/main
 
-  organizationName: "hanabi",
-  projectName: "hanabi.github.io",
-
-  onBrokenAnchors: "throw",
-  onBrokenLinks: "throw",
-  onDuplicateRoutes: "throw",
+  // With the default (undefined), Docusaurus emits pages as "/path/index.html" but writes
+  // canonical/sitemap/og URLs without a trailing slash, so GitHub Pages 301-redirects "/path" to
+  // "/path/". The Algolia crawler then follows the sitemap into those redirects (whose canonical
+  // points back at the redirecting URL) and drops every page, collapsing the index to 1 record.
+  // Setting this to false emits "/path.html", which GitHub Pages serves directly at "/path" with no
+  // redirect and no canonical mismatch, while keeping the same no-slash URLs (so relative links
+  // resolve unchanged).
+  trailingSlash: false,
 
   i18n: {
     defaultLocale: "zh",
@@ -27,6 +35,7 @@ const config: Config = {
     },
   },
 
+<<<<<<< HEAD
   presets: [
     [
       "classic",
@@ -42,8 +51,26 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
+=======
+  future: {
+    faster: true,
+    v4: true,
+  },
+
+  onBrokenAnchors: "throw",
+  onDuplicateRoutes: "throw",
+  tagline: undefined,
+  organizationName: "hanabi",
+  projectName: "hanabi.github.io",
+>>>>>>> upstream/main
 
   themeConfig: {
+    docs: {
+      sidebar: {
+        hideable: true,
+      },
+    },
+
     navbar: {
       title: "H-Group Conventions",
       logo: {
@@ -92,10 +119,8 @@ const config: Config = {
       ],
     },
 
-    docs: {
-      sidebar: {
-        hideable: true,
-      },
+    colorMode: {
+      defaultMode: "dark",
     },
 
     algolia: {
@@ -104,17 +129,27 @@ const config: Config = {
       indexName: "hanabi-conventions",
       contextualSearch: false, // Enabled by default; only useful for versioned sites.
     },
-
-    colorMode: {
-      defaultMode: "dark",
-    },
   } satisfies Preset.ThemeConfig,
 
-  // -------------------------
-  // Added fields from vanilla
-  // -------------------------
-
   plugins: ["./plugins/hanabiDocusaurusPlugin/index.ts"],
+  themes: ["@docusaurus/theme-mermaid"],
+
+  presets: [
+    [
+      "classic",
+      {
+        docs: {
+          routeBasePath: "/", // Serve the docs at the site's root.
+          sidebarPath: "./sidebars.ts",
+          editUrl: "https://github.com/hanabi/hanabi.github.io/edit/main/",
+        },
+        theme: {
+          customCss: "./src/css/custom.css",
+        },
+      } satisfies Preset.Options,
+    ],
+  ],
+
   scripts: [
     // Font Awesome is used for the icons on the landing page.
     // https://fontawesome.com/kits/1932a73877/setup
@@ -126,10 +161,6 @@ const config: Config = {
     // We provide some keyboard shortcuts for easier navigation.
     "/H-Group/js/hotkey.js",
   ],
-  future: {
-    experimental_faster: true,
-    v4: true,
-  },
 
   markdown: {
     hooks: {
@@ -140,7 +171,6 @@ const config: Config = {
     // https://docusaurus.io/docs/markdown-features/diagrams
     mermaid: true,
   },
-  themes: ["@docusaurus/theme-mermaid"],
 };
 
 export default config;

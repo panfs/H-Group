@@ -17,6 +17,7 @@ players:
       - type: x
       - type: 2
         clue: 2
+        below: Play
       - type: x
       - type: x
   - cards:

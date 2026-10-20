@@ -96,6 +96,9 @@ const WORD_TO_COLOR: ReadonlyMap<string, string> = new Map([
   ["green", "green"],
   ["rainbow", "rainbow"],
   ["pink", "pink"],
+  ["white", "white"],
+  ["gray", "gray"],
+  ["orange", "orange"],
 
   // Other
   ["focus", "gold"],
@@ -104,21 +107,31 @@ const WORD_TO_COLOR: ReadonlyMap<string, string> = new Map([
   ["sp", "gold"],
   ["op", "gold"],
   ["tempo", "gold"],
+  ["fix", "gold"],
   ["stall", "gold"],
+  ["trash", "gold"],
+  ["5cm", "gold"],
+  ["pull", "gold"],
+  ["priority", "gold"],
+  ["load", "gold"],
   ["discard", "cyan"],
   ["chop", "darkred"],
   ["fresh", "green"],
+  ["good", "green"],
+  ["loaded", "darkgreen"],
   ["bad", "gray"],
   ["brown", "sienna"],
+  ["muddy", "saddlebrown"],
 ]);
 
 const COLORS_WITH_BLACK_TEXT: ReadonlySet<string> = new Set([
-  "gold",
-  "yellow",
-  "rainbow",
-  "pink",
-  "white",
   "cyan",
+  "gold",
+  "orange",
+  "pink",
+  "rainbow",
+  "white",
+  "yellow",
 ]);
 
 class ImageGenerator {
@@ -339,7 +352,7 @@ class ImageGenerator {
       "dominant-baseline": "central",
     });
 
-    if (player.clueGiver === true) {
+    if (player.clueGiver === true || player.zeroClues === true) {
       // Based on: https://stackoverflow.com/a/42783381/14347173
       const clueGiverDescription = this.translations.clueGiver;
       r.addText(clueGiverDescription, {
@@ -466,7 +479,7 @@ class ImageGenerator {
         width: CARD_WIDTH,
         height: CARD_HEIGHT,
       });
-      const rankStrings = [...ranks.values()];
+      const rankStrings = [...ranks];
       const firstRank = rankStrings[0];
       if (firstRank === undefined) {
         throw new Error("Failed to parse the first rank.");
@@ -486,7 +499,7 @@ class ImageGenerator {
         width: CARD_WIDTH,
         height: CARD_HEIGHT,
       });
-      const suitStrings = [...suits.values()];
+      const suitStrings = [...suits];
       const firstSuit = suitStrings[0];
       if (firstSuit === undefined) {
         throw new Error("Failed to parse the first suit.");
@@ -504,7 +517,7 @@ class ImageGenerator {
       this.drawCardPips(s, ranks, crossedOut, orange);
     } else {
       // An exact card identity was specified. (e.g. "r1")
-      const suitStrings = [...suits.values()];
+      const suitStrings = [...suits];
       const firstSuit = suitStrings[0];
       if (firstSuit === undefined) {
         throw new Error("Failed to parse the first suit.");
@@ -513,7 +526,7 @@ class ImageGenerator {
       if (suitName === undefined) {
         throw new Error("Failed to parse the first suit name.");
       }
-      const rankStrings = [...ranks.values()];
+      const rankStrings = [...ranks];
       const firstRank = rankStrings[0];
       if (firstRank === undefined) {
         throw new Error("Failed to parse the first rank.");
@@ -566,7 +579,7 @@ class ImageGenerator {
     const letters: string[] = [];
     const numbers: string[] = [];
     for (const ch of cardType) {
-      if (/^\d$/.test(ch)) {
+      if (/^\d$/v.test(ch)) {
         numbers.push(ch);
       } else {
         letters.push(ch);
@@ -590,7 +603,7 @@ class ImageGenerator {
     // Validate that the suit comes before the rank.
     // e.g. "b3" instead of "3b"
     if (letters.length > 0 && numbers.length > 0) {
-      const firstCharacter = cardType[0];
+      const firstCharacter = cardType.at(0);
       if (firstCharacter === undefined) {
         throw new Error("Failed to get the first character of a card.");
       }
@@ -646,12 +659,31 @@ class ImageGenerator {
     const orangeSet = new Set(orange?.toString());
     const rankPipWidth = CARD_WIDTH / 5;
     for (let rank = 1; rank < 6; rank++) {
-      if (pips.has(rank.toString())) {
-        const rect = svg.addSVG({
-          x: (rank - 1) * rankPipWidth,
-          y: (CARD_HEIGHT * 4) / 5,
-          width: rankPipWidth,
-          height: CARD_HEIGHT / 5,
+      if (!pips.has(rank.toString())) {
+        continue;
+      }
+
+      const rect = svg.addSVG({
+        x: (rank - 1) * rankPipWidth,
+        y: (CARD_HEIGHT * 4) / 5,
+        width: rankPipWidth,
+        height: CARD_HEIGHT / 5,
+      });
+      rect.addText(rank.toString(), {
+        x: "50%",
+        y: "50%",
+        fill: orangeSet.has(rank.toString()) ? "orange" : "white",
+        style: "filter: url(#shadow_rank)",
+        "text-anchor": "middle",
+        "dominant-baseline": "central",
+      });
+      if (crossedOutSet.has(rank.toString())) {
+        rect.addImage(`${PIECES_PATH}/x.png`, {
+          x: CARD_WIDTH / 10 - 6,
+          y: CARD_HEIGHT / 10 - 6,
+          width: 12,
+          height: 12,
+          style: "filter: url(#black_x_rank)",
         });
         rect.addText(rank.toString(), {
           x: "50%",
@@ -732,15 +764,27 @@ class ImageGenerator {
       });
 
       // Draw the clue circle on the arrow.
-      const colors: ReadonlyMap<string, string> = new Map([
-        ["r", "red"],
-        ["b", "blue"],
-        ["g", "lightgreen"],
-        ["y", "yellow"],
-        ["p", "blueviolet"],
-        ["pink", "pink"],
-      ]);
-      const color = colors.get(clue) ?? "black";
+      let color: string;
+      if (/^\d$/v.test(clue)) {
+        // For numeric clues, use black.
+        color = "black";
+      } else {
+        // For color clues, look up the suit, then use its color.
+        const cssColorOverrides: ReadonlyMap<string, string> = new Map([
+          ["green", "lightgreen"],
+          ["purple", "blueviolet"],
+        ]);
+        const suitWord = this.suitAbbreviationToWord.get(clue);
+        if (suitWord === undefined) {
+          throw new Error(
+            `Failed to find the word for a suit corresponding to the abbreviation of: ${clue}`,
+          );
+        }
+        color =
+          cssColorOverrides.get(suitWord)
+          ?? WORD_TO_COLOR.get(suitWord)
+          ?? suitWord;
+      }
       const cx = this.xOffset + 35;
       const cy = this.yOffset - 15;
       this.svgFile.addElement("circle", {
@@ -752,7 +796,7 @@ class ImageGenerator {
         "stroke-width": "2",
       });
 
-      if (/^\d$/.test(clue)) {
+      if (/^\d$/v.test(clue)) {
         const r = this.svgFile.addSVG({
           x: this.xOffset + 27,
           y: this.yOffset - 23,
@@ -930,9 +974,7 @@ class ImageGenerator {
     ]);
     const color = colors.get(text) ?? bigText.color ?? "black";
 
-    const textColor = new Set(["gold", "yellow", "rainbow"]).has(color)
-      ? "black"
-      : "white";
+    const textColor = COLORS_WITH_BLACK_TEXT.has(color) ? "black" : "white";
 
     const r = this.svgFile.addSVG({
       x: xOfText,

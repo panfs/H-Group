@@ -7,7 +7,8 @@ stacks:
 discarded:
   - g4
 players:
-  - cards:
+  - clueGiver: true
+    cards:
       - type: x
       - type: x
       - type: x
@@ -16,7 +17,8 @@ players:
   - cards:
       - type: b
         clue: b
-        middleNote: (1)
+        middleNote: b1
+        below: Play
       - type: x
       - type: x
       - type: x

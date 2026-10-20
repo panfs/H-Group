@@ -17,31 +17,32 @@ import ChopFocus from "./single-card-focus/chop-focus.yml";
 
 ### New Cards
 
-- When determining the _focus_ of a clue, you need to look for "new" cards.
+- When determining the focus of a clue, you need to look for "new" cards.
 - New cards are specifically defined as **cards that are touched by a clue that did not have any clues "on" them already**.
 
-### Determining the Focus: 4 Steps
+### Determining the Focus
 
 So, when two or more cards are touched by a clue, which card is focused?
 
 1. If no cards are new, then **the focus is on the leftmost re-touched card**.
-1. If only one card is new, then **the focus is on the new card**.
-1. If two or more cards are new, and one of them was on chop, then **the focus is on the chop**.
-1. If two or more cards are new, and none of them were on chop, then **the focus is on the leftmost new card**.
+1. If the chop card was touched, then **the focus is on the chop**.
+   (This is still true even if other cards were touched in addition to
+   the chop!)
+1. Otherwise, **the focus is on the leftmost new card**.
 
 ### Example 1: Leftmost Focus
 
 - In the example below, Alice clues red to Bob. This must be a _Play Clue_.
 - Before this clue, Bob's hand was completely unclued. So, with this clue, **two new cards were introduced** - the red card on slot 2 and the red card on slot 4.
-- Bob knows that in this situation, the focus of the clue is the leftmost of the two new cards. This must be a _Play Clue_ on a red 1.
+- Bob knows that in this situation, the focus of the clue is the leftmost of the two new cards. This must be a _Play Clue_ on the next red card.
 
 <LeftMostFocus />
 
 ### Example 2: Chop-Focus
 
-- In the example below, Alice clues red to Bob. This must be a _Play Clue_.
+- In the example below, no cards have been discarded and Alice clues red to Bob. This must be a _Play Clue_.
 - Before this clue, Bob's hand was completely unclued. So, with this clue, **three new cards were introduced** - slot 1, slot 2, and slot 5.
-- Before this clue, Bob's chop was slot 5. So, since the clue touched his chop and _Chop-Focus_ has precedence, this must be a _Chop-Focus Play Clue_ on a red 1.
+- Before this clue, Bob's chop was slot 5. So, since the clue touched his chop and _Chop-Focus_ has precedence, this must be a _Chop-Focus Play Clue_ on the next red card.
 
 <ChopFocus />
 

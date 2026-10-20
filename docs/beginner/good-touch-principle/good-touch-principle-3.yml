@@ -1,6 +1,6 @@
 stacks:
   - r: 1
-  - y: 1
+  - y: 2
   - g: 0
   - b: 1
   - p: 0
@@ -16,9 +16,10 @@ players:
       - type: x
       - type: y
         clue: y
-        middleNote: (2)
-        below: Focus
+        middleNote: y3
+        below: Play
       - type: y
         clue: y
+        middleNote: y4, y5
       - type: x
       - type: x

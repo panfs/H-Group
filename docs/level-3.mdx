@@ -9,7 +9,8 @@ import FixClue1 from "./level-3/fix-clue-1.yml";
 import FixClue2 from "./level-3/fix-clue-2.yml";
 import FixClue3 from "./level-3/fix-clue-3.yml";
 import FixClue4 from "./level-3/fix-clue-4.yml";
-import SarcasticDiscard from "./level-3/sarcastic-discard.yml";
+import SarcasticDiscard1 from "./level-3/sarcastic-discard-1.yml";
+import SarcasticDiscard2 from "./level-3/sarcastic-discard-2.yml";
 import InformationLock from "./level-3/information-lock.yml";
 
 - From here on out, you can move to the next level once you feel comfortable with the previous one.
@@ -36,7 +37,7 @@ import InformationLock from "./level-3/information-lock.yml";
 
 #### Part 2 - The Fresh 1's Rule
 
-- The previous section applies when all of the clued 1s were present in the starting hand. In other words, if one or more 1s are clued that were not in the starting hand, then you would play them as normal from left-to-right.
+- The previous section applies when all of the clued 1s were present in the starting hand. In other words, if one or more 1s are clued that were not in the starting hand, then you would play them as normal from newest to oldest.
 - However, what if there is a **mix** of starting hand 1s and non-starting hand 1s? Then, things get a little more complicated.
 - In this situation, we call the non-starting hand 1s "fresh" 1s. It makes sense that fresh 1s would be more important than non-fresh 1s, because otherwise the non-fresh 1s might have been clued earlier.
 - Thus, freshly drawn 1's should always be played before non-fresh 1's.
@@ -66,7 +67,7 @@ import InformationLock from "./level-3/information-lock.yml";
 
 - From the Beginner's Guide, we know that all clues that touch two or more cards [must have a single focus](beginner/single-card-focus.mdx).
 - In a normal _Play Clue_, only the focus is promised to be playable. But in a number 1 _Play Clue_ at the beginning of the game, all of the cards are promised to be playable (from _Good Touch Principle_). So finding the focus of these types of clues hardly ever matters.
-- However, it some cases, it might matter, like if all the 1's are played except for a single 1. We agree that such clues are focused on the 1 that would play first (according to the rules above).
+- However, in some cases, it might matter, like if all the 1's are played except for a single 1. We agree that such clues are focused on the 1 that would play first (according to the rules above).
 
 ### The Fix Clue
 
@@ -124,20 +125,22 @@ import InformationLock from "./level-3/information-lock.yml";
 
 - Occasionally, through a mistake (or complicated situation), the same card will be clued in two different people's hands. Generally, this is to be avoided, but sometimes it happens. Handling this can be tricky.
 - Generally, the **first** player who fully realizes that they have the duplicate card should discard it (as opposed to playing it or holding on to it). This is called a _Sarcastic Discard_, and it communicates to the other player that they 100% have the discarded card. (This is because normally, from _Good Touch Principle_, we never discard cards that have been clued, so if a player discards a clued non-trash card, something special must be going on.)
-- For example, in a 3-player game:
+- For example:
   - Red 2 is played on the stacks.
   - Alice has one red 3 clued in her hand with just number 3. (She does not know which suit it is.)
   - Alice clues number 3 to Bob, which touches one 3. (This is a mistake, because it might be violating _Good Touch Principle_.)
   - Bob knows that the only playable 3 is red 3. He also knows that Alice has a clued red 3 already in her hand. Thus, he knows that he has the red 3 and that Alice made a mistake.
   - Bob performs a _Sarcastic Discard_ to pass the red 3 back to Alice.
 
-<SarcasticDiscard />
+<SarcasticDiscard1 />
 
 - The _Sarcastic Discard_ is similar to the _Prompt_, except that it is initiated by a discard instead of a clue.
 - However, unlike a _Prompt_, if there are multiple cards that a _Sarcastic Discard_ could apply to, then it does **not** promise that it is the leftmost card. It only promises that they have the card somewhere. For example:
   - Alice _Sarcastic Discards_ a red 3.
   - Bob has two cards clued with number 3 in his hand. He does not have any color information on either 3.
   - Bob can be certain that one of the two 3's is red 3, but he does not know which one it is yet.
+
+<SarcasticDiscard2 />
 
 ## General Principles
 
@@ -177,11 +180,11 @@ import InformationLock from "./level-3/information-lock.yml";
 #### Information Lock with the Full Identity
 
 - As soon as a clue is given to a card, if it is enough to determine the card's full identity, then the assumed identity is said to be locked in to the card. (On Hanab Live, this is usually represented as a player writing an "identity note" on the card.)
-- For example, in a 3-player no variant game:
+- For example, in a 3-player game:
   - It is the first turn and nothing is played on the stacks.
   - Alice clues red to Bob, touching a red card on slot 1 as a _Play Clue_.
   - Bob looks at Cathy's hand, her _Finesse Position_ (slot 1) is not red 1, thus this is not _Finesse_.
-  - Bob immediately right-clicks on the card and writes a note of "red 1".
+  - Bob immediately right-clicks on the card and writes a note of "r1".
   - This card is now "locked in" as a red 1. No future clues or actions from other players can ever change that.
 
 #### Information Lock with a Superposition
@@ -193,22 +196,22 @@ import InformationLock from "./level-3/information-lock.yml";
   - Red 1 and blue 1 are played on the stacks.
   - Alice clues number 2 to Bob, touching a two on slot 1 as a _Play Clue_.
   - Bob looks at Cathy's hand. Cathy's _Finesse Position_ is not a 1. Thus, this is not _Reverse Finesse_.
-  - Bob writes a _card note_ of "red 2 or blue 2" on his clued card.
+  - Bob writes a _card note_ of "r2, b2" on his clued card.
   - This card is now "locked in" as this specific superposition. Future clues and actions can narrow down the cards in the superposition or completely collapse the superposition, but new cards can never be added to the superposition.
 
 #### Information Lock on In-Between Cards
 
 - As soon as a clue is given to a card that is not immediately playable, the assumed identity is locked in to the card **and** all of the in-between cards.
-- For example, in a 4-player no variant game:
+- For example, in a 4-player game:
   - Red 1 is played on the stacks.
   - Bob has one card in his hand clued with number 2. (It is currently unknown.)
   - Cathy has one card in her hand clued with number 3. (It is currently unknown.)
   - Alice clues Donald red, touching a red 4 as a _Play Clue_.
-  - Bob is promised to have the red 2. He writes a note of "red 2" on his clued 2. It is now locked in forever as that card.
-  - Cathy is promised to have the red 3. She writes a note of "red 3" on her clued 3. It is now locked in forever as that card.
+  - Bob is promised to have the red 2. He writes a note of "r2" on his clued 2. It is now locked in forever as that card.
+  - Cathy is promised to have the red 3. She writes a note of "r3" on her clued 3. It is now locked in forever as that card.
   - Donald knows that from _Good Touch Principle_, his red card cannot be red 2, since Bob has that card clued in his hand.
   - Donald knows that from _Good Touch Principle_, his red card cannot be red 3, since Cathy has that card clued in her hand.
-  - Donald knows that he must therefore have the red 4. He writes a note of "red 4" on his red card. It is now locked in forever as that card.
+  - Donald knows that he must therefore have the red 4. He writes a note of "r4" on his red card. It is now locked in forever as that card.
 
 <InformationLock />
 
@@ -217,6 +220,10 @@ import InformationLock from "./level-3/information-lock.yml";
 - A direct conflict is the only thing that can "break" an information lock.
 - For example, in a 3-player game:
   - Bob has a card in his hand that is touched with a number 2 clue. (It has no color clues on it.)
-  - Bob has a written a note of "red 2" on the card, meaning that it has been "locked in" as a red 2. (Bob will permanently think that it is a red 2.)
+  - Bob has a written a note of "r2" on the card, meaning that it has been "locked in" as a red 2. (Bob will permanently think that it is a red 2.)
   - Alice clues blue to Bob, which "fills in" the card as a blue 2.
-  - It is now impossible for this card to be a red 2 - Bob knows that he was lied to earlier on in the game. Bob erases his note of "red 2" on the card and the _Information Lock_ is broken.
+  - It is now impossible for this card to be a red 2 - Bob knows that he was lied to earlier on in the game. Bob erases his note of "r2" on the card and the _Information Lock_ is broken.
+
+## Challenge Questions
+
+If you are new to level 3, see if you can complete [these challenge questions](challenge-questions/level-3.mdx).

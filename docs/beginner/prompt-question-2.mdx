@@ -6,10 +6,12 @@ import BeginnersGuideProgress from "@site/src/beginnersGuide.tsx";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import PromptQuestion2 from "./prompt-question-2/prompt-question-2.yml";
+import PromptAnswer2 from "./prompt-question-2/prompt-answer-2.yml";
 
 <BeginnersGuideProgress id="prompt-question-2" />
 
 <Tabs
+  queryString="tab"
   defaultValue="question"
   values={[
     {label: 'Question', value: 'question'},
@@ -20,6 +22,8 @@ import PromptQuestion2 from "./prompt-question-2/prompt-question-2.yml";
 - Cathy has two unknown 3's in her hand.
 - What are the two possible clues that Alice can give?
 - Which one is better and why?
+
+<PromptQuestion2 />
 
 </TabItem>
 <TabItem value="solution">
@@ -33,7 +37,7 @@ import PromptQuestion2 from "./prompt-question-2/prompt-question-2.yml";
   - Cathy would know that she is promised to have the blue 3, so she would go on to play her other 3 as the blue 3.
 - The second clue is better than the first clue because it gets Cathy to play two cards instead of one.
 
+<PromptAnswer2 />
+
 </TabItem>
 </Tabs>
-
-<PromptQuestion2 />

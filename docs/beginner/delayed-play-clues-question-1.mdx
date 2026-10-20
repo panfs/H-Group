@@ -6,10 +6,12 @@ import BeginnersGuideProgress from "@site/src/beginnersGuide.tsx";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import DelayedPlayCluesQuestion1 from "./delayed-play-clues-question-1/delayed-play-clues-question-1.yml";
+import DelayedPlayCluesAnswer1 from "./delayed-play-clues-question-1/delayed-play-clues-answer-1.yml";
 
 <BeginnersGuideProgress id="delayed-play-clues-question-1" />
 
 <Tabs
+  queryString="tab"
   defaultValue="question"
   values={[
     {label: 'Question', value: 'question'},
@@ -25,14 +27,16 @@ import DelayedPlayCluesQuestion1 from "./delayed-play-clues-question-1/delayed-p
 1. Is this a _Delayed Play Clue_?
 1. What action should Cathy perform?
 
+<DelayedPlayCluesQuestion1 />
+
 </TabItem>
 <TabItem value="solution">
 
-1. Cathy writes a _card note_ of "red 3".
+1. Cathy writes a _card note_ of "r3".
 1. Yes, this is a _Delayed Play Clue_ through the red 2.
 1. Since Cathy cannot play the red 3 yet, she should give an unrelated clue or discard.
 
+<DelayedPlayCluesAnswer1 />
+
 </TabItem>
 </Tabs>
-
-<DelayedPlayCluesQuestion1 />

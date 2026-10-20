@@ -16,13 +16,15 @@ players:
       - type: x
       - type: x
       - type: x
-      - type: r
+      - type: r2
         clue: r
-        middleNote: (2)
+        middleNote: r1, r2
+        below: Play
       - type: x
   - cards:
       - type: x
         above: Red 1
+        below: Finesse
       - type: x
       - type: x
       - type: x

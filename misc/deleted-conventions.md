@@ -18,7 +18,7 @@ As we evolve our convention framework, sometimes we decide to delete existing "m
 - As noted in the _Fix Clues_ section, a _Fix Clue_ is required before a misplay occurs on duplicated cards. But usually, the misplay will not occur until late in the game, because there is always some other extra card (that is not currently playable) that it could be.
 - Thus, if other urgent things are at hand, you can usually defer giving some _Fix Clue_ for a long time and hope that through ancillary information and the context of the game, the player will "naturally" figure out that the card is duplicated.
 - So if a _Fix Clue_ is given early to you, it can be strange. You were happily discarding, and now all of a sudden you are being fixed on a card that was just sitting in your hand and was not in danger of being misplayed.
-- This usually means that your chop suddenly became important, so the _Fix Clue_ was given early to give you a good discard and keep you occupied. Thus, you should permanently chop move one card.
+- This usually means that your chop suddenly became important, so the _Fix Clue_ was given early to give you a good discard and keep you occupied. Thus, you should permanently _Chop Move_ one card.
 - This convention was deleted because it was ambiguous as to whether _Fix Clues_ were early or not. (It was one of the worst conventions of all time, leading to many lost games.)
 
 ### The Disease Bluff
@@ -65,7 +65,7 @@ As we evolve our convention framework, sometimes we decide to delete existing "m
   - negative clues present on the card
   - historical / contextual information about the card (derived from moves that teammates performed earlier on in the game)
 - In such a scenario, the clue will look like a _Reverse Finesse_ and then next person will misplay their _Finesse Position_ card.
-- After the misplay, the person who received the clue is to treat it like a normal _Misplay Chop Move_, and chop move all the cards to the right of the clued card.
+- After the misplay, the person who received the clue is to treat it like a normal _Misplay Chop Move_, and _Chop Move_ all the cards to the right of the clued card.
 - This convention was deleted since it was hardly ever used.
 
 ### Priority in Multi-Color Variants
@@ -173,6 +173,20 @@ As we evolve our convention framework, sometimes we decide to delete existing "m
 - This is where you perform a _Bluff_ such that the card that is blind-played is already touched in someone else's hand **and** the player who has the other copy has full knowledge of the card.
 - You wouldn't normally do this since it is only a 1-for-1 instead of a 2-for-1. However, it can be useful if you want to touch a card that you wouldn't otherwise be able to, like a one-away from playable card. Alternatively, you may strongly want to give ancillary information to some other card.
 - This convention was deleted due to lack of use.
+
+### The Bad Touch Finesse / The Bad Touch Bluff
+
+- Intentionally violating _Good Touch Principle_ by cluing duplicated cards could signal a blind-play from _Finesse Position_.
+- For example, in a 3-player game:
+  - It is the first turn and nothing is played on the stacks.
+  - Cathy has two red 1's and a 5 on chop.
+  - Alice clues number 1 to Cathy, touching both red 1's.
+  - Bob sees that Alice could have given a _5 Save_ instead of violating _Good Touch Principle_. He interprets the clue as a _Bad Touch Finesse_ and blind-plays his _Finesse Position_ card, which is a playable blue 1.
+  - Cathy knows that her 1's cannot both be trash, since nothing was played on the stacks when the clue was given. She plays the newer 1 and plans to discard the older duplicate.
+- Similarly, by duplicating 2's with a number 2 clue, it was possible to turn a _2 Save_ into a _Play Clue_, promising the connecting 1 on _Finesse Position_. A _Bad Touch Bluff_ could instead get an unrelated playable card.
+- Related moves included the _Bad Touch Double Finesse_ and _Bad Touch Double Bluff_ for 3's, and the _Bad Touch Triple Finesse_ for 4's. The deliberate duplication overrode the usual _3 Bluff_ or _4 Double Bluff_ interpretation to call for additional blind-plays.
+- Additionally, we also had a _Bad Touch Layered Finesse_, where by duplicating a card that would otherwise result in a one-blind-play _Bluff_, you could turn a _Bluff_ into a _Layered Finesse_.
+- These conventions were deleted in favor of the _Unknown Dupe Discharge_, which is a huge improvement because it streamlines how to think about trash cards in a more holistic way.
 
 ### Implied Color Truth
 
@@ -393,7 +407,7 @@ As we evolve our convention framework, sometimes we decide to delete existing "m
   - Instead of playing her red 1, Cathy clues red to Donald, touching a red 3 on slot 1 and a red 2 on slot 2. This must be a _Play Clue_, since these cards are not on Donald's chop.
   - Donald knows that since Cathy is not playing her red 1 and giving a clue, she must have a good reason.
   - Donald looks around the table and does not see the red 2 in anybody else's _Finesse Position_. Thus, this cannot be a _Selfish Finesse_.
-  - Donald also knows that this cannot be a _Self Finesse_. (Donald has a negative red clue on his _Finesse Position_ card.)
+  - Donald also knows that this cannot be a _Self-Finesse_. (Donald has a negative red clue on his _Finesse Position_ card.)
   - Thus, this must be a _Selfish Focus Inversion_, so Donald marks his rightmost card as red 2 for later. The other red card in his hand can be red 3, red 4, or red 5. Donald discards.
 - This convention was deleted since it was prone to misinterpretation and was too rare to be useful.
 
@@ -405,8 +419,8 @@ As we evolve our convention framework, sometimes we decide to delete existing "m
 - This is called a _Cursed Finesse_ because it requires the situation to be "cured". By performing a _Cure Blind-Play_, the move is transformed from a _Bluff_ into a real _Finesse_.
 - For example, in a 4-player game:
   - It is the first turn and nothing is played on the stacks.
-  - Bob's hand is as follows, from left to right: `red 1, blue 1, green 3, green 3`
-  - Donald's hand is as follows, from left to right: `blue 2, green 4, green 4, yellow 4`
+  - Bob's hand is, from newest to oldest: `red 1, blue 1, green 3, green 3`
+  - Donald's hand is, from newest to oldest: `blue 2, green 4, green 4, yellow 4`
   - Thus, Alice has a _Free Choice_ between cluing blue to Donald and number 2 to Donald. If Alice chooses blue, then it will cause a _Bluff_ (as a 2-for-1). If Alice chooses number 2, it will cause a _Clandestine Finesse_ (as a 3-for-1).
   - Alice clues blue to Donald, touching a single blue 2.
   - Bob tries to blind-play the blue 1 from his _Finesse Position_. Instead, it is a red 1 and it successfully plays. Bob now knows that he was _Bluffed_.
@@ -556,7 +570,7 @@ As we evolve our convention framework, sometimes we decide to delete existing "m
 - However, if Cathy sees a clue that she can give that will turn the move into a _Clandestine Finesse_ on Bob, then she must always do that.
 - For example, in a 4-player game:
   - It is the first turn of the game and nothing is played on the stacks.
-  - Bob's hand is as follows, from newest to oldest: `red 1, blue 2, blue 1, blue 5`
+  - Bob's hand is, from newest to oldest: `red 1, blue 2, blue 1, blue 5`
   - Donald hand has a red 2 in it.
   - Alice clues number 2 to Bob, touching a blue 2 on slot 2.
   - Bob blind-plays the red 1.

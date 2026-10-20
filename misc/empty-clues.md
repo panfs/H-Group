@@ -31,12 +31,12 @@
 | 2 (8, 14)  | play 2          | number 2 or green   |
 | 3 (9, 15)  | play 3          | number 3 or yellow  |
 | 4 (10, 16) | play 4          | number 4            |
-| 5 (11, 17) | chop move       | number 5            |
+| 5 (11, 17) | _Chop Move_     | number 5            |
 
-- The chop move action **must** be given to a player (and can only be given to a player) if **both** of the following are true:
+- The _Chop Move_ action **must** be given to a player (and can only be given to a player) if **both** of the following are true:
   - they have a globally known critical card on chop (2's do not count as critical unless the other copy is in the discard pile)
   - they have no new playable cards in their hand to "get" (which includes non-_Prompted_ cards that have clues on them already)
-- The player receiving the chop move action can clue or discard, just like action 0.
+- The player receiving the _Chop Move_ action can clue or discard, just like action 0.
 
 ### 5-Player / 6 Player (with 3 color clues)
 
@@ -50,7 +50,7 @@
 
 ## Empty Target Priority
 
-- If a player has two or more playable cards, the priority is as follows:
+- If a player has two or more playable cards, the priority is:
   - #1 - unknown playable cards
     - #1a - unclued & completely unknown playable cards
     - #1b - unclued & unknown _Chop Moved_ playable cards
@@ -58,7 +58,7 @@
   - #2 - known playable cards
     - #2a - unclued & known playable cards (which would be confirming that they are indeed _Finessed_, for example)
     - #2b - clued & known playable cards (which would just be retouching the card, accomplishing nothing new)
-- If there two or more cards of the same subcategory above, then the priority is as follows:
+- If there two or more cards of the same subcategory above, then the priority is:
   - #1 - unique (e.g. black 1)
   - #2 - lowest rank
   - #3 - leftmost
@@ -234,7 +234,7 @@
 | 2 (8, 14)  | play 2          | number 2 or green  |
 | 3 (9, 15)  | play 3          | number 3 or yellow |
 | 4 (10, 16) | play 4          | number 4 or red    |
-| 5 (11, 17) | chop move       | number 5           |
+| 5 (11, 17) | _Chop Move_     | number 5           |
 
 ### 4-Player or 5-Player (with 4 color clues)
 

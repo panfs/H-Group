@@ -1,4 +1,5 @@
-import { $o, lintCommands, readFile } from "complete-node";
+import { assertDefined } from "complete-common";
+import { $o, commandExists, lintCommands, readFile } from "complete-node";
 import { glob } from "glob";
 import path from "node:path";
 
@@ -8,6 +9,13 @@ const BAD_WORDS = [
   // This is a common mistake: https://github.com/hanabi/hanabi.github.io/pull/1367
   "Principal",
 ] as const;
+
+const yamllintExists = await commandExists("yamllint");
+if (!yamllintExists) {
+  throw new Error(
+    'Failed to find "yamllint". You can install it with: pip install --user yamllint',
+  );
+}
 
 await lintCommands(import.meta.dirname, [
   // Use TypeScript to type-check the code.
@@ -33,10 +41,13 @@ await lintCommands(import.meta.dirname, [
   "cspell-check-unused-words",
 
   // Check for template updates.
-  "complete-cli check --ignore build.ts,knip.config.js,LICENSE,lint.ts",
+  "complete-cli check --ignore action.yml,build.ts,knip.config.js,LICENSE,lint.ts",
 
   // Lint YAML files.
   "yamllint .",
+
+  // Lint Bash files.
+  "bash scripts/shellcheck.sh",
 
   // eslint-disable-next-line unicorn/prefer-top-level-await
   ["check unused YAML files", checkUnusedYAMLFiles()],
@@ -46,13 +57,14 @@ await lintCommands(import.meta.dirname, [
 ]);
 
 async function checkUnusedYAMLFiles() {
-  const importRegex = /import .+ from ".*\/(.+.yml)/;
+  const importRegex = /import .+ from "(?<yamlPath>[^"]+\.yml)"/v;
 
   // Go through every ".mdx" file and compile a set of used YAML files.
   const mdxFilePathFragments = await glob("./docs/**/*.mdx");
-  const usedYAMLFileNames = new Set<string>();
+  const usedYAMLFilePaths = new Set<string>();
   for (const mdxFilePathFragment of mdxFilePathFragments) {
     const mdxFilePath = path.join(REPO_ROOT, mdxFilePathFragment);
+    const mdxDir = path.dirname(mdxFilePath);
     // eslint-disable-next-line no-await-in-loop
     const fileContents = await readFile(mdxFilePath);
     const lines = fileContents.split("\n");
@@ -63,44 +75,47 @@ async function checkUnusedYAMLFiles() {
         continue;
       }
 
-      const match = line.match(importRegex);
+      const match = importRegex.exec(line);
       if (match === null) {
         continue;
       }
 
-      const yamlFileName = match[1];
-      if (yamlFileName === undefined) {
+      const yamlImportPath = match.groups?.["yamlPath"];
+      assertDefined(
+        yamlImportPath,
+        `Failed to parse the YAML file path from file: ${mdxFilePath}`,
+      );
+
+      // Resolve the import path relative to the importing file.
+      const absoluteYamlPath = path.resolve(mdxDir, yamlImportPath);
+      // Normalize to relative path from docs directory.
+      const relativeYamlPath = path.relative(
+        path.join(REPO_ROOT, "docs"),
+        absoluteYamlPath,
+      );
+
+      if (usedYAMLFilePaths.has(relativeYamlPath)) {
         throw new Error(
-          `Failed to parse the YAML file path from file: ${mdxFilePath}`,
+          `The following YAML file is being used two or more times: ${relativeYamlPath}`,
         );
       }
 
-      if (usedYAMLFileNames.has(yamlFileName)) {
-        throw new Error(
-          `The following YAML file is being used two or more times: ${yamlFileName}`,
-        );
-      }
-
-      usedYAMLFileNames.add(yamlFileName);
+      usedYAMLFilePaths.add(relativeYamlPath);
     }
   }
 
   // Go through every ".yml" file.
   const yamlFilePathFragments = await glob("./docs/**/*.yml");
-  const yamlFileNames = new Set<string>();
+  const yamlFilePaths = new Set<string>();
   for (const yamlFilePathFragment of yamlFilePathFragments) {
-    const yamlFileName = path.basename(yamlFilePathFragment);
-    if (yamlFileNames.has(yamlFileName)) {
-      throw new Error(
-        `There is more than one YAML file with the name of: ${yamlFileName}`,
-      );
-    }
+    // Normalize the path relative to docs directory.
+    const relativeYamlPath = path.relative("./docs", yamlFilePathFragment);
 
-    yamlFileNames.add(yamlFileName);
+    yamlFilePaths.add(relativeYamlPath);
 
-    if (!usedYAMLFileNames.has(yamlFileName)) {
+    if (!usedYAMLFilePaths.has(relativeYamlPath)) {
       throw new Error(
-        `The following YAML file is not being used: ${yamlFileName}`,
+        `The following YAML file is not being used: ${relativeYamlPath}`,
       );
     }
   }
