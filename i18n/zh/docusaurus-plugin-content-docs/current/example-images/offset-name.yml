@@ -12,7 +12,7 @@ players:
       - type: x
       - type: x
         clue: r
-  - text: Bob 重新审视自己的手牌
+  - text: Bob reinterprets his hand
   - offset: -1
     cards:
       - type: x

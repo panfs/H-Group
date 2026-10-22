@@ -1,6 +1,8 @@
 // See: https://webpack.js.org/contribute/writing-a-loader/
 // TODO: go through all variables and remove them potentially
 
+/* eslint-disable perfectionist/sort-maps */
+
 import type { LoaderContext } from "webpack";
 import YAML from "yaml";
 import type {
@@ -161,7 +163,7 @@ class ImageGenerator {
 
     this.piecesPath = `${options.baseUrl}${PIECES_PATH}`;
     this.wordToColor = new Map([
-      ...WORD_TO_COLOR.entries(),
+      ...WORD_TO_COLOR,
       ...Object.entries(this.translations.color).map(
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         ([k, v]) => [v, WORD_TO_COLOR.get(k)!] as const,
@@ -707,26 +709,28 @@ class ImageGenerator {
 
     const angle = (2 * Math.PI) / this.suitAbbreviations.length;
     for (const [i, color] of this.suitAbbreviations.entries()) {
-      if (pips.has(color)) {
-        svg.addImage(
-          `${this.piecesPath}/pips/${this.suitAbbreviationToWord.get(color)}.svg`,
-          {
-            x: CARD_WIDTH / 2 - 6 - 20 * Math.sin(angle * i),
-            y: CARD_HEIGHT / 2 - 6 - 20 * Math.cos(angle * i),
-            width: 12,
-            height: 12,
-            style: "filter: url(#shadow_suit)",
-          },
-        );
-        if (crossedOutSet.has(color)) {
-          svg.addImage(`${this.piecesPath}/x.png`, {
-            x: CARD_WIDTH / 2 - 6 - 20 * Math.sin(angle * i) - 2,
-            y: CARD_HEIGHT / 2 - 6 - 20 * Math.cos(angle * i) - 2,
-            width: 16,
-            height: 16,
-            style: "filter: url(#black_x_suit)",
-          });
-        }
+      if (!pips.has(color)) {
+        continue;
+      }
+
+      svg.addImage(
+        `${this.piecesPath}/pips/${this.suitAbbreviationToWord.get(color)}.svg`,
+        {
+          x: CARD_WIDTH / 2 - 6 - 20 * Math.sin(angle * i),
+          y: CARD_HEIGHT / 2 - 6 - 20 * Math.cos(angle * i),
+          width: 12,
+          height: 12,
+          style: "filter: url(#shadow_suit)",
+        },
+      );
+      if (crossedOutSet.has(color)) {
+        svg.addImage(`${this.piecesPath}/x.png`, {
+          x: CARD_WIDTH / 2 - 6 - 20 * Math.sin(angle * i) - 2,
+          y: CARD_HEIGHT / 2 - 6 - 20 * Math.cos(angle * i) - 2,
+          width: 16,
+          height: 16,
+          style: "filter: url(#black_x_suit)",
+        });
       }
     }
   }
@@ -1060,8 +1064,10 @@ export default function convertYAMLToSVG(
   this: LoaderContext<LoaderOptions>,
   source: string,
 ): string {
-  const yaml = YAML.parse(source) as unknown;
+  const yaml: unknown = YAML.parse(source);
   const hanabiGameState = hanabiGameStateSchema.parse(yaml);
+  // Webpack passes the loader options through `this`.
+  // eslint-disable-next-line unicorn/no-this-outside-of-class
   const image = new ImageGenerator(hanabiGameState, this.getOptions());
   return image.getSVGText();
 }

@@ -1,0 +1,50 @@
+---
+title: 应该盲打吗？
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-7-should-this-blind-play/question.yml";
+import Answer from "./level-7-should-this-blind-play/answer.yml";
+
+<ChallengeQuestionProgress level={7} id="level-7-should-this-blind-play" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 红 3、黄 5、绿 3、蓝 3 和紫 5 都打出。
+- Alice 有一张几回合前被[_弃牌位移过_](../level-4.mdx#the-5s-chop-move-5cm)的牌，并且有一个负的 5 提示。
+- Alice 应该盲打这张牌吗？有哪些考虑因素？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- Alice 是否应当盲打的答案是**视情况而定**，需要考虑多个因素。
+- Alice 必须首先确定这张牌是否安全可打：
+  - 由于有一个负的提示，这张牌不可能是 5，因此它不是*关键牌*。
+  - 它*可能*是红 4 、绿 4 或蓝 4，这样就可以成功打出。
+  - 它也可能是游戏中的任何其他牌，这将导致一次失误。
+  - 由于这张牌已经被*弃牌位移过*，它更有可能是一张有用的牌，而不是无用的牌。
+- 因此，由于盲打的结果要么是成功打出，要么是失误，Alice 可以继续进行进一步的考虑。（如果这张牌是*关键牌*，那么她绝对不应该冒险打出它。）
+- 根据[_盲打弃牌位移过的牌_](../level-7.mdx#blind-playing-chop-moved-cards)部分，如果团队还有一次或多次失误的余地，玩家可以盲打他们的*弃牌位移过*的牌。
+- 因此：
+  - 如果团队有 0 次失误，Alice 可能想尝试盲打这张牌。
+  - 如果团队有 1 次失误，Alice 可能想尝试盲打这张牌。
+  - 如果团队有 2 次失误，Alice 绝对不应该尝试盲打这张牌。
+- 如果团队有 0 或 1 次失误，最后的考虑因素是当前游戏的进展情况。当前的*节奏*和*效率*如何？换句话说，还剩多少时间，以及未来还有多少提示机会？
+  - 如果游戏已经进行得很好，那么没有必要冒险盲打任何牌。Alice 可以正常弃牌，等待她的队友直接提示这张牌。
+  - 如果已经进入*终局*，并且没有太多提示机会，那么 Alice 可以尝试盲打这张牌，以节省团队的一次提示机会。
+
+<Answer />
+
+</TabItem>
+</Tabs>

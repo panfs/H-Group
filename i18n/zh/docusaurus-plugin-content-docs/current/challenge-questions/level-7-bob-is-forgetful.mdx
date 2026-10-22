@@ -1,0 +1,40 @@
+---
+title: 健忘的 Bob
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-7-bob-is-forgetful/question.yml";
+import Answer from "./level-7-bob-is-forgetful/answer.yml";
+
+<ChallengeQuestionProgress level={7} id="level-7-bob-is-forgetful" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 所有的 2 都打出。
+- Alice 用最后一个提示机会给 Cathy 提示了数字 4。这似乎是对 Bob 的红 3 的*飞牌*。
+- Bob 现在没有提示机会了，但他忘记打出他的红 3，而是丢弃了他的弃牌位。
+- Cathy 应该写下什么笔记？Cathy 在她的回合应该做什么？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- Bob 并不健忘，他是故意弃牌而不是盲打他被*飞*的牌。
+- 根据[_紧急原则_](../level-5.mdx#urgency-principle-playing-into-finesses-as-soon-as-possible)，盲打应该尽快发生，如果 Bob 只是盲打了他的红 3，Cathy 可以很容易地打出她的红 4。
+- 所以这实际上**不是**一个[_尖叫弃牌_](../level-7.mdx#the-scream-discard-chop-move-sdcm)，因为 Bob 的已知打出是来自一个*飞牌*，而 Cathy 也可能在她的*飞牌位*上有一个红 3（作为一个*模糊飞牌*）。
+- 因此，Cathy 不应该*移动*任何*弃牌位*。她应该盲打她的*飞牌位*作为另一个红 3。
+
+<Answer />
+
+</TabItem>
+</Tabs>

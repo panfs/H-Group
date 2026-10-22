@@ -1,5 +1,5 @@
 ---
-title: 示例图的技术文档
+title: Technical Documentation for the Example Images
 ---
 
 import { Highlight } from "prism-react-renderer";
@@ -30,8 +30,11 @@ import TrashResult from "./example-images/trash.yml";
 import BigTextSource from "!raw-loader!./example-images/big-text.yml";
 import BigTextResult from "./example-images/big-text.yml";
 
-import SuitsSource from "!raw-loader!./example-images/suits.yml";
-import SuitsResult from "./example-images/suits.yml";
+import Suits1Source from "!raw-loader!./example-images/suits-1.yml";
+import Suits1Result from "./example-images/suits-1.yml";
+
+import Suits2Source from "!raw-loader!./example-images/suits-2.yml";
+import Suits2Result from "./example-images/suits-2.yml";
 
 export const Code = ({ code }) => (
   <Highlight code={code} language="yaml">
@@ -64,37 +67,37 @@ export const Example = ({ code, Image }) => (
   </div>
 );
 
-## 简介 \{#intro\}
+## Intro
 
-本站中有许多展示游戏状态的示例图。本页描述了如何编辑或创建图片。
+Throughout this website, we have example images that show game states. This page describes how to edit them or how to create new ones.
 
-每个示例图都是用 [YAML](https://yaml.org/) 文件生成的。YAML 是一种易于编辑的简单文本格式。
+Each example image is created from a [YAML](https://yaml.org/) file, which is a simple textual description that you can easily edit.
 
-## 添加新图 \{#adding-a-new-image\}
+## Adding a New Image
 
-1. 在想要添加新图的 Markdown 页面旁的同名子文件夹下创建一个新的 YAML 文件。（可以基于现有的 YAML 文件进行修改。）
+1. Create a new YAML file in a subdirectory having the same name as the Markdown page you're putting it on. (You can base it off of an existing YAML file if you want.)
 
-2. 在的 Markdown 页面中，将其作为 React 组件导入文件顶部，如下所示：
+2. On the Markdown page, import it as a React component at the top of the file, like so:
 
 ```jsx
 import NewChopMove from "./page-name/new-chop-move.yml";
 ```
 
-3. 在 Markdown 文件的适当位置插入 React 组件：
+3. Insert the React component at the appropriate place in the Markdown file:
 
 ```jsx
 <NewChopMove />
 ```
 
-作为文档包含文本和图片的基本示例，可参见[等级 2 的 Markdown 文件](https://raw.githubusercontent.com/hanabi/hanabi.github.io/refs/heads/main/docs/level-2.mdx)。
+See [the Markdown file for level 2](https://raw.githubusercontent.com/hanabi/hanabi.github.io/refs/heads/main/docs/level-2.mdx) as a basic example of how a document is supposed to look with both text and images.
 
-## 开发 \{#development\}
+## Development
 
-使用 `npm run start` 在本地查看页面时，你对网站所做的任何更改都会自动更新，无需刷新页面。这包括对 YAML 文件的更改——它们将自动重新转换为 SVG 文件并在浏览器中更新。
+When using `npm run start` to view the page locally, any changes that you make to the website will be automatically updated without having to refresh the page. This includes any changes to YAML files - they will be automatically re-converted into SVG files on the fly and updated in the browser.
 
-## 通用原则 \{#guidelines\}
+## Guidelines
 
-创建或修改图片时应遵守一些通用的原则，最好从复制或者修改已有图片开始。
+These are general guidelines that should be followed when creating or modifying images. The best way to start is to copy and modifying an existing one.
 
 - Examples should normally use 5 stacks and 3 players. Include more only if needed.
 - Stacks can be skipped if they are not at all important to the scenario.
@@ -104,7 +107,7 @@ import NewChopMove from "./page-name/new-chop-move.yml";
     - Cards that _have_ been touched by a clue are partially identified. (For example `type: 2`.)
     - Additionally, if a note has been written, put it in the `middleNote` attribute.
     - Use multiple `type`s sparingly, and only when relevant to the variant (i.e. rainbow/pink).
-  - Usually do not identify cards in the clue giver's or clue receiver's hand.
+  - Usually do not identify cards in the clue giver's or the reacting player's hand.
     - Cards that are seen by only _some_ players should have their identities _above_ the card. (For instance: `above: Red 2`.)
 - If a clue is given, always include who gives it using the `clueGiver: true` attribute.
   - The clue giver is usually Alice.
@@ -116,7 +119,7 @@ import NewChopMove from "./page-name/new-chop-move.yml";
     - Use shorthand notation, and include all possibilities:
       - Fully identified: `b2`
       - Partially identified: `b23`, `ryg2`
-      - Chop moved: `cm`. Additionally chop moved cards should have `cm: true` to draw a white border.
+      - _Chop Moved_: `cm`. Additionally, _Chop Moved_ cards should have `cm: true` to draw a white border.
       - Known trash: `kt`. Additionally, known trash should have `trash: true` to draw a trash can.
   - Other cards whose identities are inferred from the given clue should have a black message _below_ the card. (For example `below: Finesse`.)
     - It is not necessary to write notes on those cards, as they will usually blind play right away.
@@ -124,120 +127,133 @@ import NewChopMove from "./page-name/new-chop-move.yml";
 - Illegal clues and/or misplays should clearly be marked in `red` color.
 - Mistakes or suboptimal clues should be marked in `orange` color.
 - Alternative actions (discards, plays) should be marked `below:` in cyan color.
-  - The player whose action it is should be marked with `clueGiver: true`.
+  - The player whose action it is should be marked with `clueGiver: true` or `zeroClues: true`.
 - Other information about cards should be marked `below:`.
 
-每个例子都不一样，这些是通用原则，运用你的判断力。
+Each example is different, these are guidelines, use common judgment.
 
-## YAML 文件详细格式 \{#yml-file-format\}
+## Detailed YML File Format
 
-表示示例图的 YAML 文件主要分为两段：`stacks` 和 `players`。
+There are 2 main sections: `stacks` and `players`.
 
-- `stacks` 是已经打出的牌的列表。默认支持的花色包括：
-  - `r`: 红色
-  - `g`: 绿色
-  - `b`: 蓝色
-  - `y`: 黄色
-  - `p`: 紫色
-  - `m`: 彩色（`m` 指 multicolor，多色）
-- `players` 为每位玩家包含一个条目。每个条目包含他们的手牌 `cards`。
+- `stacks` is an array of cards which have been played on the stacks already. The following suits are supported by default:
+  - `r`: red,
+  - `g`: green,
+  - `b`: blue,
+  - `y`: yellow,
+  - `p`: purple,
+  - `m`: rainbow (multicolor).
+- `players` contains an entry for each player. Each entry contains the `cards` that they have in their hand.
 
 <Example code={SimpleSource} Image={SimpleResult} />
 
-玩家会自动分配以下名称：Alice、Bob、Cathy、Donald 和 Emily。可以通过 `name` 属性覆盖此设置。比如 Bob 的手牌在某事件前后需要显示两次，这可能很有用。
+Players are assigned the following names automatically: Alice, Bob, Cathy, Donald, and Emily. It is possible to override this with the `name` attribute. For example, this could be useful if Bob's hand is shown twice, before and after something happens.
 
-`players` 也可以包含 `text` 或 `space` 而不是 `cards`。其中 `text` 用于描述游戏中发生的事情，而 `space` 用于增加一些垂直间距。
+`players` can also contain a `text` or `space` instead of `cards`. The first on is used to describe something that happens in a game. The second to add some vertical space.
 
 <Example code={TextNameSource} Image={TextNameResult} />
 
-另外，`players` 也可以包含 `offset`，用来滚动玩家名称。
+Additionally, `players` can also contain an `offset` to change player names.
 
 <Example code={OffsetNameSource} Image={OffsetNameResult} />
 
-### 手牌 \{#cards\}
+### Cards
 
-手牌可以有多种类型：
+Cards in hand can be of various types:
 
-- 提示过且已明确的牌，例如 `g2`
-- 提示过且已知花色的牌，例如 `b`
-- 提示过且已知数字的牌，例如 `4`
-- 提示过且有多种可能性的牌，例如 `b234`、`rm4`、`ym45`
-- 未提示过且没有任何标记的牌，例如 `x`
-- 未提示过但显示标记的牌，例如 `xrg23`
+- clued with known exact identity, e.g. `g2`
+- clued with known suit, e.g. `b`
+- clued with known rank, e.g. `4`
+- clued with multiple possibilities, e.g. `b234`, `rm4`, `ym45`
+- unclued card without any pips displayed, e.g. `x`
+- unclued card with pips displayed, e.g. `xrg23`
 
-`crossedOut` 属性可用于在某些标记上打 X（当该牌的每一张都在其他地方可见时）。
+`crossedOut` attribute can be used to mark some pips with X (when all other copies of that card are seen elsewhere).
 
-`orange` 属性可用于用橙色绘制某些数字标记。这对于粉牌有用。
+The `orange` attribute can be used to draw some rank pips with orange. This is useful for pink cards.
 
-默认情况下，被提示的牌有橙色边框，但可以通过 `border` 属性覆盖。
+By default, clued cards have an orange border, but this can be overridden with the `border` attribute.
 
-`cm` 属性可用于在牌周围绘制白色边框。
+The `cm` attribute can be used to draw a white border around the card.
 
-`trash` 属性可用于在牌上绘制垃圾桶图标。
+The `trash` attribute can be used to draw a trash icon on top of the card.
 
-`fix` 属性可用于在牌上绘制扳手图标。
+The `fix` attribute can be used to draw a wrench icon on top of the card.
 
 <Example code={TypesSource} Image={TypesResult} />
 
-### 提示 \{#clues\}
+### Clues
 
-你可以用 `clue` 属性来标出正在被提示到的牌。
+You can use the `clue` attribute to show that a card is in the process of being clued.
 
-默认情况下没有提示者，但可以通过 `clueGiver` 属性指定。
+By default, there is no clue giver, but this can be specified with the `clueGiver` attribute.
 
-你还可以用 `retouched` 属性来表示提示重新触及一张牌，这会导致箭头比通常更暗。（与 Hanab Live 的行为一致。）
+You can also use the `retouched` attribute to signify that the clue is re-touching a card, which will result in a darker arrow than normal. (This matches the behavior of Hanab Live.)
 
 <Example code={ClueSource} Image={ClueResult} />
 
-### 牌上的文本 \{#text-on-cards\}
+### Text on Cards
 
-可以在牌上放置文本：
+Text can be placed on a card:
 
-- `middleNote` 将文本标签放在牌中间
-  - 如果文本是半角括号包围的五种花色之一，它会自动着色
-- `above` 在牌上方放置标注
-- `below` 在牌下方放置标注
+- `middleNote` to put a text label in the middle of the card
+  - the string is automatically colored if it is a letter of one of the 5 suits
+- `above` to put a note above the card
+- `below` to put a note below the card
 
-`above` 和 `below` 具有相同的语法：
+`above` and `below` have the same syntax:
 
-- `above: 绿 3` 或 `above: 彩 5` 将绘制具有指定颜色和文本的框。
-- 还有一些关键字分配了特定的颜色：`焦点`、`弃牌位`、`坏`、`出牌`。
-- 你可以使用 `color` 属性覆盖颜色。该属性接受 CSS 颜色，此外还支持 `rainbow` 表示彩色。
+- `above: Green 3` or `above: Rainbow 5` will draw the box with the specified color and text.
+- Several more keywords have a specific color assigned to them: `Focus`, `Chop`, `Bad`, `Play`.
+- You can override the color using `color` attribute. CSS colors are accepted, and additionally `rainbow`.
 
 <Example code={CardTextSource} Image={CardTextResult} />
 
-有些所写会展开为更长的文本：
+Some shortcuts expand to larger text:
 
 <Example code={CardTextExpandSource} Image={CardTextExpandResult} />
 
-### 弃牌堆 \{#discard-pile\}
+### Discard Pile
 
-某些示例需要显示弃牌堆中的一些牌。这是通过顶层的 `discarded` 列表完成的。
+For some examples, some cards in the discard pile need to be shown. This is performed with the `discarded` array on the top level.
 
 <Example code={TrashSource} Image={TrashResult} />
 
-### 大文本 \{#big-text\}
+### Big Text
 
-对于关键字“诈飞”“飞牌”和“违规！”，颜色被忽略。
+For keywords "Bluff", "Finesse" and "Illegal!", color is ignored.
 
 <Example code={BigTextSource} Image={BigTextResult} />
 
-### 变体 \{#variants\}
+### Variants
 
-可以通过 `suits` 添加一些变体的花色。`suits` 包含一个映射，将表示花色的字母映射为牌图像和标记的文件名部分的映射。
-目前支持以下变体花色：
+Some variant-specific suits can be added via `suits`, which contains the mapping from the letter indicating the suit to the part of the filenames of card images and pips.
+Currently these variant suits are supported:
+
+Alternative suits:
 
 - black
 - brown
-- null（需要用引号括起来，因为通常 `null` 是 YAML 关键字）
+- gray
+- muddy
+- null (needs to be in quotes because normally `null` is a YAML keyword)
 - omni
+- orange
 - pink
 - prism-rygbp
 - teal
 - white
 
-标准花色不需要在 `suits` 中重复。
+This is done to be able to differentiate between suits which commonly use the same letter, e.g. or "i" for both prism and pink.
 
-这样做是为了能够区分通常使用相同字母表示的花色，例如“i”同时用于 prism 和 pink。
+Standard suits that don't need to be repeated in `suits`:
 
-<Example code={SuitsSource} Image={SuitsResult} />
+- red
+- yellow
+- green
+- blue
+- purple
+- multi
+
+<Example code={Suits1Source} Image={Suits1Result} />
+<Example code={Suits2Source} Image={Suits2Result} />

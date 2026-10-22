@@ -1,0 +1,42 @@
+---
+title: 填补（问题 1）
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-6-filling-in-i/question.yml";
+import Answer from "./level-6-filling-in-i/answer.yml";
+
+<ChallengeQuestionProgress level={6} id="level-6-filling-in-i" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- Bob 手中有两张被提示过但其他信息未知的牌：3 号位的蓝牌和 4 号位的绿牌。
+- Alice 提示 Bob 数字 3，提示到 3 号位和 4 号位的两张牌。
+- 弃牌堆中已有一张蓝 4，另一张蓝 4 还未抽出。
+- 提示的含义是什么？
+- 提示的焦点是什么？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- 由于 Alice 提示时 Bob 的牌已经被“获取”，这一定是[_节奏提示_](../level-6.mdx#the-tempo-clue)。
+- 这个提示让两张牌在下回合变为可打出。
+- 由于最后一张蓝 4 尚未出现，目前无法通过*引牌*打出其中的蓝牌。
+- 因此，尽管这个提示不符合[_提示价值下限原则_](../beginner/minimum-clue-value-principle)，它仍然被认作“有价值的”。
+- 作为*节奏提示*，提示的焦点是最左侧的蓝 3。
+
+<Answer />
+
+</TabItem>
+</Tabs>

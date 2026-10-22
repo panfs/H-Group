@@ -1,0 +1,37 @@
+---
+title: 只剩 3 张牌
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-8-3-cards-left/question.yml";
+import Answer from "./level-8-3-cards-left/answer.yml";
+
+<ChallengeQuestionProgress level={8} id="level-8-3-cards-left" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 牌堆里只剩下 3 张牌，提示机会用完了。所有剩余的有用的牌都已提示出。
+- Bob 知道所有他手中被提示的牌具体是什么。
+- Alice 应该采取什么行动？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- Alice 可能会想打红 4，以便让 Bob 打红 5。但是这样做会输掉游戏。
+- 这是因为瓶颈是 Bob 能否在游戏结束前打出所有的 5。为了能够达成这一点，需要有提示机会来停顿。弃牌可以恢复一个提示机会，但打出 4 不会。
+- Alice 应该在这一回合弃牌，暂时保留红 4，之后再打。
+  <Answer />
+
+</TabItem>
+</Tabs>

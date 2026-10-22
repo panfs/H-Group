@@ -1,0 +1,37 @@
+---
+title: 打出多张 1（问题 1）
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-3-playing-multiple-1-s-i/question.yml";
+import Answer from "./level-3-playing-multiple-1-s-i/answer.yml";
+
+<ChallengeQuestionProgress level={3} id="level-3-playing-multiple-1-s-i" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 现在是游戏的第一回合。
+- Alice 提示 Bob 数字 1，触及 2 号位和 5 号位。
+- Bob 应以怎样的顺序打出这些牌？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- Bob 知道*起始手牌中出牌顺序反转*。
+- 所以，他**从老到新**打出这些牌。
+
+<Answer />
+
+</TabItem>
+</Tabs>

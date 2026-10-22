@@ -1,0 +1,44 @@
+---
+title: 无声尖叫
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-7-the-silent-scream/question.yml";
+import Answer from "./level-7-the-silent-scream/answer.yml";
+
+<ChallengeQuestionProgress level={7} id="level-7-the-silent-scream" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 现在有 2 个提示机会。
+- 黄 1、绿 2 和蓝 2 都打出。
+- Alice 手上有一张可打的绿 3 和一张废牌黄 1，都是全员已知的。
+- Bob 的弃牌位上有一张蓝 4。
+- Alice 弃掉了全员已知的废牌黄 1，而不是打出绿 3。
+- 这个动作合法吗？如果合法，这个动作叫什么？
+- Bob 应该如何反应？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- Alice 弃掉已知的废牌而不是打出她的已知可打牌。
+- 这个动作是合法的，即使*弃牌位移过*的牌不是关键或可打的，和/或有可用的提示机会。
+- 这个动作叫做[_喊叫弃牌位移动_](../level-7.mdx#the-shout-discard-chop-move)。
+- Bob 应该将他的弃牌位永久移动一个位置，并在他的第 4 个位置上写下 “cm” 来标记为*弃牌位移过*。
+- Bob 在这个回合不允许弃牌。相反，他**必须**给出一个提示。
+
+<Answer />
+
+</TabItem>
+</Tabs>

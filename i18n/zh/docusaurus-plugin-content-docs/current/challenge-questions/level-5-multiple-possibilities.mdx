@@ -1,0 +1,43 @@
+---
+title: 多种可能性
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-5-multiple-possibilities/question.yml";
+import Answer from "./level-5-multiple-possibilities/answer.yml";
+
+<ChallengeQuestionProgress level={5} id="level-5-multiple-possibilities" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 红 2，黄 1 和绿 1 打出。
+- Bob 的手牌，从新到老分别是：“蓝 1，蓝 2，绿 1，黄 4”。
+- Cathy 的手牌，从新到老分别是：“绿 1，紫 1，紫 2，黄 2（带有数字 2 提示）”。
+- Alice 给出 Donald 数字 3 提示，触及 2 号位的 3。
+- Donald 应该在这张牌上写什么笔记？具体说明。
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- 它可能是红 3，作为“正常”的*出牌提示*。
+- 它可能是黄 3，作为对 Cathy 黄 2 的[_引牌_](../level-1.mdx#the-prompt)。
+- 它可能是绿 3，作为对 Cathy 绿 2 的[_隐藏飞牌_](../level-5.mdx#the-hidden-finesse)。（黄 2 会先被当作绿 2 打出。）
+- 它可能是蓝 3，作为对 Bob 蓝 1 和蓝 2 的[_双重飞牌_](../level-2.mdx#the-double-finesse--triple-finesse--quadruple-finesse)。
+- 它可能是紫 3，作为对 Cathy 所有牌的[_暗飞牌_](../level-5.mdx#the-clandestine-finesse)。（这技术上被称为 [Surreptitious Finesse](../extras/special-finesses.mdx#the-surreptitious-finesse)，但在等级 5，你不需要区分它们。）
+- Donald 应写下包含所有这些可能性的笔记：“红 3，黄 3 如果 黄 2引，绿 3 如果 绿 2 飞，蓝 3 如果蓝 1 飞，紫 3 如果紫 1 飞”。
+
+<Answer />
+
+</TabItem>
+</Tabs>

@@ -1,0 +1,40 @@
+---
+title: 另一个尖叫弃牌
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-7-another-scream-discard/question.yml";
+import Answer from "./level-7-another-scream-discard/answer.yml";
+
+<ChallengeQuestionProgress level={7} id="level-7-another-scream-discard" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 所有的 2 都打出。
+- 现在没有任何提示机会。
+- Alice 手上有一张全员已知的可打红 3。
+- Bob 的弃牌位上有一张绿 4（绿 3 还没有打出）。
+- Alice 想要保留有用的绿 4，而不是打出红 3 而是弃掉了她的弃牌位上的牌。
+- 这个动作是合法的[_尖叫弃牌_](../level-7.mdx#the-scream-discard-chop-move-sdcm)吗？为什么或为什么不？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- 这不是一个合法的[_尖叫弃牌_](../level-7.mdx#the-scream-discard-chop-move-sdcm)，因为绿 4 是*差一步可打的*。
+- 玩家**只**允许对**可打**或**关键**的牌执行*尖叫弃牌*，而不是对*差一步可打的*牌执行。
+
+<Answer />
+
+</TabItem>
+</Tabs>

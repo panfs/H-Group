@@ -1,0 +1,40 @@
+---
+title: 只剩 2 张牌
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-8-2-cards-left/question.yml";
+import Answer from "./level-8-2-cards-left/answer.yml";
+
+<ChallengeQuestionProgress level={8} id="level-8-2-cards-left" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 牌堆里只剩下 2 张牌，且还有 2 个提示机会。没有人有任何提示过的牌。
+- Alice 应该采取什么行动？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- Alice 看到 Cathy 手中有红 3，Bob 手中有红 5。
+- 如果 Alice 手中有红 4，那么情况就很简单：大家会提示红牌，然后打出它们。
+- 另一方面，也有可能两张红 4 仍在牌堆中。这种情况下，打出 4 后就没有时间打出 5 了。
+- 因此，Alice 应该弃牌。她要么手中有红 4，要么会抽到其中一张红 4。
+  - （在此例中，我们假设 Alice 极不可能弃掉红 4，因为很可能之前已经将红 4 *弃牌位移动*了。）
+- Alice 弃牌后，Bob 可以通过提示 Alice 的红 4 来*飞*红 3，然后红 5 可以在下一回合打出。
+
+<Answer />
+
+</TabItem>
+</Tabs>

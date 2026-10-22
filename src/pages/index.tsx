@@ -15,9 +15,9 @@ function HomepageHeader() {
         </h1>
         <p className="hero__subtitle">
           {translate({
+            message: "Strategies for ",
             id: "subtitle.before",
             description: "Part of website subtitle before the Hanabi word",
-            message: "Strategies for ",
           })}
           <a
             href="https://boardgamegeek.com/boardgame/98778/hanabi"
@@ -28,9 +28,9 @@ function HomepageHeader() {
             <Translate>Hanabi</Translate>
           </a>
           {translate({
+            message: ", a cooperative card game of logic and reasoning.",
             id: "subtitle.after",
             description: "Part of website subtitle after the Hanabi word",
-            message: ", a cooperative card game of logic and reasoning.",
           })}
         </p>
         <div className={styles["buttons"]}>

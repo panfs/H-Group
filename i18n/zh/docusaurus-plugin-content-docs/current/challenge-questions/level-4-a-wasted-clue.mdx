@@ -1,0 +1,39 @@
+---
+title: 浪费一个提示？
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-4-a-wasted-clue/question.yml";
+import Answer from "./level-4-a-wasted-clue/answer.yml";
+
+<ChallengeQuestionProgress level={4} id="level-4-a-wasted-clue" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 所有 3 都被打出。
+- Alice 提示 Bob 的数字 3 ，仅提示到 3 号位。
+- 这是什么类型的提示？
+- Bob 应该写下什么笔记？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- 没有 3 需要被打出，所以被提示的牌是已知的废牌。
+- 这是一个 _垃圾弃牌位移动_，它会将废牌右边的所有牌 _弃牌位移过_。
+- 所有玩家应该在 Bob 的 3 号位写下 `kt`，在 Bob 的 4 号位和 5 号位写下 `cm`。
+
+<Answer />
+
+</TabItem>
+</Tabs>

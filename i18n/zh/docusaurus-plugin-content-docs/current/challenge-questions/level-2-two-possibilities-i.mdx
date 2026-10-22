@@ -1,0 +1,43 @@
+---
+title: 两种可能（问题 1）
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-2-two-possibilities-i/question.yml";
+import Answer from "./level-2-two-possibilities-i/answer.yml";
+
+<ChallengeQuestionProgress level={2} id="level-2-two-possibilities-i" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- Alice 提示 Bob 蓝色，仅提示到 2 号位。
+- Bob 在牌上写下了关于其可能性的笔记。
+
+1. Bob 会写下什么*笔记*？
+1. Bob 应该采取什么行动？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+1. Bob 会写下“蓝 2、若蓝 2 被飞则为蓝 3”。
+   - Bob 知道这一定是对他的蓝牌的*出牌提示*，因为它不在弃牌位。蓝 2 还没有打出在其他地方尚未被提示到，因此这张牌可能是蓝 2。
+   - 然而，Bob 也看到 Cathy 的*飞牌位*上有一张蓝 2，因此 Alice 可能执行了 [_反向飞牌_](../level-2.mdx#the-reverse-finesse) 。如果是这样，这张牌可能是蓝 3。
+1. Bob 必须考虑*反向飞牌*的可能性，所以他不能立即打出蓝牌。假设 Alice 手中没有需要提示的牌，Bob 应该选择弃牌（并避免提示蓝 2）。
+   - 如果 Cathy 在她的回合中盲打她的蓝 2，Bob 可以将笔记更新为“蓝 2、若蓝 2 被飞则为蓝 3 | 蓝 3”。
+   - 如果 Cathy 没有更紧急事情而仍未在她的回合中打出蓝 2，Bob 可以将笔记更新为“蓝 2、若蓝 2 被飞则为蓝 3 | 蓝 2”。
+
+<Answer />
+
+</TabItem>
+</Tabs>

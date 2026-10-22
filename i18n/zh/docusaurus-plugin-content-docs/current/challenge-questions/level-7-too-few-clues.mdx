@@ -1,0 +1,45 @@
+---
+title: 提示太少
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-7-too-few-clues/question.yml";
+import Answer from "./level-7-too-few-clues/answer.yml";
+
+<ChallengeQuestionProgress level={7} id="level-7-too-few-clues" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 所有的 2 都打出。
+- 现在没有任何提示机会。
+- Alice 手上有一张全员已知的可打蓝 3。
+- Cathy 的弃牌位上有一张关键的紫 5。
+- Alice 决定弃掉她的弃牌位上的牌，而不是打出蓝 3。
+- Alice 为什么弃牌？
+- Bob 应该写下什么笔记？
+- Bob 在他的回合应该做什么？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- Alice 正在执行[_生成弃牌_](../level-7.mdx#the-generation-discard)。
+- 如果 Alice 打出她的蓝 3，Bob 将被迫弃牌，然后 Cathy 可能会决定弃掉关键的紫 5。
+- 通过执行*生成弃牌*，Alice 给了 Bob 一个提示机会。
+- 由于 Cathy 的弃牌位上有关键或可打的牌，Bob 应该使用这个提示来对Cathy 的紫 5 做*留 5 提示*。
+- Bob**不**应该写下任何笔记，因为*生成弃牌*不会*弃牌位移过*任何牌。
+
+<Answer />
+
+</TabItem>
+</Tabs>

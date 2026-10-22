@@ -1,0 +1,41 @@
+---
+title: 懒惰的 Bob
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-5-bob-is-lazy/question.yml";
+import Answer from "./level-5-bob-is-lazy/answer.yml";
+
+<ChallengeQuestionProgress level={5} id="level-5-bob-is-lazy" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 这是游戏的第一回合，没有人打出过牌。
+- Alice 提示 Cathy 数字 2，触及 Cathy 的 1 号位和 4 号位。（这是一个焦点在 Cathy 1 号位的*出牌提示*。）
+- Bob 在他的*飞牌位*有红 1，Cathy 知道 Bob 可能盲打它，这会让 Alice 的提示解释为对从红 1 到红 2 的*飞牌*。
+- 作为替代，Bob 提示了 Alice 数字 1，触及 3 号位的绿 3。
+- Cathy 应该做什么？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- Bob 看起来推迟了盲打并给出了一个 Cathy 能轻易给出的1 换 1 的提示。
+- [_紧迫原则_](../level-5.mdx#urgency-principle-playing-into-finesses-as-soon-as-possible)说**在合理范围内尽快**打出被飞的牌。所以，*紧迫原则*说明 Bob 从一开始从未被*飞*过。
+- 然而，Alice 的提示一定是某种*飞牌*，因为 Cathy 1 号位的牌被推断可打出。所以，这是一个对 Cathy 的[_模糊_](../level-5.mdx#the-ambiguous-finesse)[_自我飞牌_](../level-2.mdx#the-self-finesse)，说明 Cathy 需要优先盲打她的*飞牌位*的牌。
+- 当 Cathy 成果盲打她的*飞牌位*的牌黄 1 后，她知道她之前未知的作为飞牌目标的数字 2 是一定是黄 2。
+
+<Answer />
+
+</TabItem>
+</Tabs>

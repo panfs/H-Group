@@ -1,0 +1,41 @@
+---
+title: 游戏早期
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-2-early-game/question.yml";
+import Answer from "./level-2-early-game/answer.yml";
+
+<ChallengeQuestionProgress level={2} id="level-2-early-game" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 现在是*早期*。只剩下 1 个提示机会。
+- 列出 Alice 可以采取的所有行动。哪种行动最好？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- Alice 可以采取两种行动：
+  - 第一，Alice 可以向 Donald 给出 [_留 5 提示_](../level-2.mdx#the-5-stall-cluing-off-chop-5s)（通过对紫 5 提示数字 5）。
+  - 第二，Alice 可以选择弃牌。
+- 如果 Alice*留 5*，那么 Bob 的行动将是弃牌（因为没有剩余的提示机会）。
+- 如果 Bob 弃牌，他会弃掉一张绿 1，这张弃牌很优秀（因为它已经打出，是废牌）。
+- Alice 的弃牌位可能是一张比绿 1 更值得保留的牌，比如黄 3 或蓝 3。
+- 因此，虽然 Alice 可以选择*留 5 提示*或弃牌，但她的最佳行动是执行*留 5 提示*，因为她的弃牌位比 Bob 的弃牌位更有价值。
+
+<Answer />
+
+</TabItem>
+</Tabs>

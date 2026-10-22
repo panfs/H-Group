@@ -1,0 +1,41 @@
+---
+title: 5 弃牌位移动
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-4-5's-chop-move/question.yml";
+import Answer from "./level-4-5's-chop-move/answer.yml";
+
+<ChallengeQuestionProgress level={4} id="level-4-5's-chop-move" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 现在是游戏的第一回合，没有任何牌被打出。
+- Alice 向 Cathy 给出 5 提示，提示到了 4 号位的 5。
+- 这是什么类型的提示？
+- 应该写下什么笔记？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- 通常，任何焦点不是在 chop 上的提示都是*出牌提示*。然而，5 提示有所不同。
+- 等级 4 引入了[5 弃牌位移动](../level-4#the-5s-chop-move-5cm)，它表示提示**距弃牌位差一张牌**的 5 可能有特殊含义。
+- 然而，*5 停顿*优先于*5 弃牌位移动*，因此玩家需要检查游戏状态。
+- 由于现在仍然是*游戏早期*，允许*5 停顿*，这不是一个*弃牌位移动*。
+- 不应写下任何笔记。Alice 只是没有看到其他有趣的提示。
+
+<Answer />
+
+</TabItem>
+</Tabs>

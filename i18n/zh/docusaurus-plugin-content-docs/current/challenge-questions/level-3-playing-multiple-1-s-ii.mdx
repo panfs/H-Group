@@ -1,0 +1,63 @@
+---
+title: Playing Multiple 1's, II
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import QuestionPart1 from "./level-3-playing-multiple-1-s-ii/question-part-1.yml";
+import QuestionPart2 from "./level-3-playing-multiple-1-s-ii/question-part-2.yml";
+import QuestionPart3 from "./level-3-playing-multiple-1-s-ii/question-part-3.yml";
+import Answer from "./level-3-playing-multiple-1-s-ii/answer.yml";
+
+<ChallengeQuestionProgress level={3} id="level-3-playing-multiple-1-s-ii" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 现在是游戏的第一回合。
+- Alice 提示 Bob 数字 1。
+- 打出这些 1 的顺序是从右到左。
+
+<QuestionPart1 />
+
+- Bob 打出最右边的一张牌。是一张红 1，成功打出。（然后他抽了一张牌，手中的其他牌右移。）
+- Cathy 做了不相关的事。
+- Alice 提示 Bob 红色，触及 Bob 的弃牌位。这一定是对红 2 的*出牌提示*。
+
+<QuestionPart2 />
+
+- Bob 打出 5 号位的牌。是一张蓝 1，成功打出。（然后他抽了一张牌，手中的其他牌右移。）
+- Cathy 做了不相关的事。
+- Alice 又一次提示 Bob 数字 1，触及两张新牌和一张起始手牌中的 1。
+- Bob 预期打出哪张牌？
+
+<QuestionPart3 />
+
+</TabItem>
+<TabItem value="solution">
+
+- 有时，新 1 被提示的同时老的 1 还没有打出。
+- 当这种情况发生时，关于之前 1 的打出顺序的笔记被清除，打出 1 的顺序被重新计算。
+- 对于此计算，打出顺序保持一致：
+  - 弃牌位
+  - 新 1（从左到右）
+  - 起始手牌中的 1（从右到左）
+- 所以：
+  - Bob 清除了关于他手中 1 的笔记。
+  - Bob 的 2 号位是弃牌位，所以 Bob 写下“第一”的笔记。
+  - Bob 的 1 号位是新 1 ，他写下“第二”的笔记。
+  - Bob 的 4 号位和 5 号位是起始手牌中的 1，他在 5 号位写下“第三”和在 4 号位写下“第四”的笔记。
+  - 进一步，Bob 知道他手中有 4 张 1，但只有 3 张需要打出。因此，根据*良触原则*，他在 4 号位的 1 不需要打出，把它标记为“已知废牌”。
+  - Bob 预期打出他 2 号位的牌。是黄 1，成功打出。
+
+<Answer />
+
+</TabItem>
+</Tabs>

@@ -1,0 +1,42 @@
+---
+title: 健忘的 Alice
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-7-alice-is-forgetful/question.yml";
+import Answer from "./level-7-alice-is-forgetful/answer.yml";
+
+<ChallengeQuestionProgress level={7} id="level-7-alice-is-forgetful" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 所有 2 都打出。
+- 现在没有任何提示机会。
+- Alice 手上有一张全员已知的红色 3。
+- Alice 忘记打出她的红色 3，而是丢弃了她的弃牌位上的牌。
+- Bob 应该写下什么笔记？ Bob 在他的回合应该做什么？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- Alice 并不健忘，她是故意弃牌而不是打出她的已知可打牌。
+- Alice 正在执行 [_尖叫弃牌位移动_](../level-7.mdx#the-scream-discard-chop-move-sdcm)。
+- 通过弃牌而不是打出她的已知可打牌，Alice 正在向 Bob 尖叫，他的弃牌位是关键或可打的。
+- Bob 应该将他的弃牌位永久移动一个位置，并在他的第 4 个位置上写下 “cm” 来标记为 _弃牌位移过_。
+- Bob 在这个回合不允许弃牌。相反，他**必须**给出一个提示。
+
+<Answer />
+
+</TabItem>
+</Tabs>

@@ -5,7 +5,7 @@ stacks:
 players:
   - cards:
       - type: 4
-        middleNote: (蓝)
+        middleNote: (B)
       - type: r
         middleNote: (2)
       - type: x
@@ -15,16 +15,16 @@ players:
           color: yellow
   - cards:
       - type: x
-        above: 红 1
+        above: Red 1
       - type: x
         above:
           text:
-            - 多
-            - 行
-        below: 焦点
+            - Multi-
+            - line
+        below: Focus
       - type: x
-        above: 彩 4
-        below: 弃牌位
+        above: Rainbow 4
+        below: Chop
   - cards:
       - type: x
         above:
@@ -36,6 +36,6 @@ players:
         above:
           text: Foo
           color: indigo
-        below: 坏
+        below: Bad
       - type: x
-        above: 出牌
+        below: Play

@@ -1,0 +1,41 @@
+---
+title: 最佳提示（问题 3）
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-2-find-the-best-clue-iii/question.yml";
+import Answer from "./level-2-find-the-best-clue-iii/answer.yml";
+
+<ChallengeQuestionProgress level={2} id="level-2-find-the-best-clue-iii" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- Bob 手中有一张未知的 5。
+- Cathy 手中有一张未知的黄牌。
+- Alice 可以给出的最佳提示是什么？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- Alice 最有价值的提示是提示 Bob 绿色。这会是对绿 4 的*出牌提示*并发起[_自我飞牌_](../level-2.mdx#the-self-finesse)。
+- Alice 可以指望 Bob 会执行*自我飞牌*，因为：
+  - Bob 会知道绿色提示不可能是*留牌提示*（目前没有 4 是关键牌）。
+  - Bob 会知道绿色提示不可能是直接的*出牌提示*，因为没有立即可打出的绿 4。
+  - Bob 会知道绿色提示不可能是[_反向飞牌_](../level-2.mdx#the-reverse-finesse)，因为 Cathy 的*飞牌位*上没有可打出的牌可以与 4 相连。
+- Alice 也可以提示 Bob 数字 3，作为对红 3 的*出牌提示*，但这只会“获取”一张新牌，而不是两张新牌。
+
+<Answer />
+
+</TabItem>
+</Tabs>

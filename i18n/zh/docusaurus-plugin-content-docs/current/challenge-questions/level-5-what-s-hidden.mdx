@@ -1,0 +1,44 @@
+---
+title: 什么被隐藏了？
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-5-what-s-hidden/question.yml";
+import Answer from "./level-5-what-s-hidden/answer.yml";
+
+<ChallengeQuestionProgress level={5} id="level-5-what-s-hidden" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 红 1 和蓝 1 打出。
+- Bob 手中有：
+  - 一张蓝 2 在 1 号位。
+  - 一张红 2 在 4 号位，带有数字 2 的提示。（Bob 不知道这张牌是什么）
+- Alice 提示 Cathy 数字 3，触及 3 号位，作为一个*出牌提示*。
+- Bob 打出红 2。
+- Cathy 应该在她的数字 3 写下什么笔记？
+- Cathy 接下来要做什么？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- Cathy 的 3 可能是红 3，让 Alice 的提示表现为对红 2 的[引牌](../level-1.mdx#the-prompt)。
+- Cathy 的 3 也可能是蓝 3，让 Alice 的提示表现为对蓝 2 的[隐藏飞牌](../level-5.mdx#the-hidden-finesse)。
+- 既然这两种情况都合法，Cathy 在她的数字 3 写下“红 3，蓝 3 如果蓝 2 飞”的笔记。
+- 所以，Cathy 目前不能打出她的 3。她必须弃牌或做一些不相关的事。注意，Cathy 不应该提示蓝 2，因为这样会*踩掉飞牌*。
+
+<Answer />
+
+</TabItem>
+</Tabs>

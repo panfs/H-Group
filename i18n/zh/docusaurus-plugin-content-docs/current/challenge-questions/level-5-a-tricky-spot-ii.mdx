@@ -1,0 +1,53 @@
+---
+title: 棘手的情况（问题 2）
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-5-a-tricky-spot-ii/question.yml";
+import Answer from "./level-5-a-tricky-spot-ii/answer.yml";
+
+<ChallengeQuestionProgress level={5} id="level-5-a-tricky-spot-ii" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 紫 1 已经打出。
+- Alice 看到：
+  - Bob 在他的*飞牌位*有一张红 1。
+  - Cathy 的手牌，从新到老分别是：“红 2，黄 4，绿 1，蓝 3”。
+  - Cathy 的绿 1 之前被绿色提示过，是一张全员已知的绿 1。
+  - Donald 的手牌，从新到老分别是：“红 2，紫 4，绿 4，蓝 2”。
+- Alice 有哪些提示是可选的？
+- 最好的提示是哪个？
+- 以接受最好的提示的玩家的视角来看，该玩家会记下什么笔记？（具体说明，并包括笔记的所有演化）
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- Alice 有以下提示可选：
+  - 她可以对蓝 2 给出*留 2 提示*。这是一个 1 换 2 的提示，但这没有让任何牌可打出。
+  - 她可以对 Bob 的红 1 给出*出牌提示*（红色或数字 1）。这是一个 1 换 1 的提示。
+  - 她可以对 Cathy 的红 2 给出*出牌提示*（红色或数字 2）。这是一个*飞牌*的 1 换 2 的提示。
+  - 她可以对 Donald 的红 2 给出*出牌提示*，用红色。这是一个*飞牌*的 1 换 2 的提示。
+- 然而，因为两张红 2 都处于*飞牌位*，如果 Alice 用红色提示开始*飞牌*，Cathy 和 Donald 都会把他们的红色牌当作潜在的红 3，形成[_模糊飞牌_](../level-5.mdx#the-ambiguous-finesse)。
+- 既然 Cathy 已经有一个绿 1 可以打出，且 Donald 在弃牌位上有很重要的牌，最好的提示是 Alice 提示 Donald 数字 2 触发*飞牌*。这很安全因为[_紧迫原则_](../level-5.mdx#urgency-principle-playing-into-finesses-as-soon-as-possible)：
+  - Alice 给出提示后，Donald 在他的红牌写下“红 1，红 2 如果红 1 飞，红 3 如果红 2 飞”的笔记。
+  - Bob 知道他承诺有红 1，他从他的*飞牌位*成功盲打出一张红 1。
+  - Donald 将他的笔记从“红 1，红 2 如果红 1 飞，红 3 如果红 2 飞”更新为“红 2，红 3 如果红 2 飞”。
+  - Cathy 打出绿 1。
+  - Donald 将他的笔记从“红 2，红 3 如果红 2 飞”更新为“红 2”。
+
+<Answer />
+
+</TabItem>
+</Tabs>

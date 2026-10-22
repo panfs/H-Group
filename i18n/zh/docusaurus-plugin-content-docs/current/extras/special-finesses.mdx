@@ -114,14 +114,14 @@ import InvertedPriorityFinesse from "./special-finesses/inverted-priority-finess
 - First, see the section on the _[Certain Finesse](../level-10.mdx#the-certain-finesse--the-certain-discard)_.
 - This section outlines a specific and rare edge-case for _Certain Finesses_.
 - We agree that _Bluffs_ take precedence over _Certain Finesses_. This means that a _Certain Finesse_ cannot normally be performed from _Bluff Seat_.
-- _Certain Finesses_ **can** be performed from _Bluff Seat_ if it is strictly impossible to be a _Bluff_. In other words, this means that it is illegal for a player to perform a _Clandestine Finesse_ on the very next player that targets a potentially duplicated card **and** the other player can rule out the possibility of a _Bluff_.
+- _Certain Finesses_ **can** be performed from _Bluff Seat_ if it is strictly impossible to be a _Bluff_. In other words, this means that it is illegal for a player to perform a _Clandestine Finesse_ on the very next player that targets a potentially duplicated card if the other player can rule out the possibility of a _Bluff_.
 - For example, in a 3-player game:
-  - All of the 2's & blue 3 is played on the stacks. Green 3 is in the discard pile.
+  - All of the 2's are played on the stacks.
   - Alice has an unknown 3 in her hand that happens to be the red 3.
   - Alice clues number 4 to Cathy, touching a red 4 as a _Play Clue_.
   - Bob knows that Alice could be trying to perform a _Finesse_ on a red 3. Normally, he would blind-discard his _Finesse Position_ card as a _Certain Discard_ in order to pass this card back to Alice.
-  - However, Bob also knows that this might be a _Bluff_. But wait - his _Finesse Position_ card has negative blue on it. So anything that he blind-plays here would have to be a 3. Thus, this cannot be a _Bluff_, since a 3 would connect to 4 and look like a _Finesse_.
-  - The only other possibility that Bob has to worry about is a _Clandestine Finesse_. For example, he could be blind-playing a green 3 **and then** a red 3 after that. If he blind-discarded, that could "kill" the green stack, since the other copy of green 3 is already discarded.
+  - However, since Alice is in Bob's _Bluff Seat_, Bob must consider whether this could be a _Bluff_. Bob knows that since the stacks have all the 2's, anything that he blind-plays here would have to be a 3. Thus, this cannot be a _Bluff_, as a 3 would connect to 4 and look like a _Finesse_.
+  - The only other possibility that Bob has to worry about is a _Clandestine Finesse_. For example, he could be blind-playing a blue 3 **and then** a red 3 after that. If he blind-discarded, the team would lose the only visible copy of the blue 3, which would be really bad.
   - However, Bob **also** knows that you are not allowed to perform a _Clandestine Finesse_ from _Bluff Seat_ that could duplicate a card in your hand. Thus, he can discount both the possibility of a _Bluff_ **and** the possibility of a _Clandestine Finesse_.
   - Bob performs a _Certain Discard_ on his _Finesse Position_ card and it is the red 3, successfully passing it back to Alice.
 
@@ -209,7 +209,7 @@ import InvertedPriorityFinesse from "./special-finesses/inverted-priority-finess
 - _[Lie Principle](../level-11.mdx#lie-principle)_ states all that _Fibs_ must resolve immediately. An untruth that does not resolve immediately is a _Lie_.
 - Normally, _Lies_ are expressly illegal. However, some players will occasionally break the rules for the purposes of getting a _Finesse_. We call such moves _Finesses with a Lie Component_.
 - Typically, when players _Lie_ out of _Bluff Seat_, the game quickly falls apart; subsequent clues will have different meanings to different players and everyone will become "desynchronized". This typically leads to a loss.
-- With that said, it is sometimes possible to construct **safe** lines that contain a _Lie Component_. There is usually deep levels of nuance involved in these lines, so this kind of thing is only recommended for advanced and expert players.
+- With that said, it is sometimes possible to construct **safe** lines that contain a _Lie Component_. There is usually deep levels of nuance involved in these lines, so this kind of thing is only recommended for expert players.
 - The previously mentioned _Out-of-Order Finesse_ is a specific example of a _Finesse_ with a _Lie Component_. One key attribute of the _Out-of-Order Finesse_ is that the player who receives the _Fix Clue_ knows that **all** of the related cards are playable, or it would not have been worth the risk (and the confusion) to perform a line with a _Lie Component_ in the first place.
 - This concept can be generalized to all _Finesses_ that have a _Lie Component_. After a player receives a _Fix Clue_ in such a situation, they should assume that the _Finesse_ is "still on". So, depending on the situation, they should either know that the initial card that was clued is playable (like in an _Out-of-Order Finesse_) or continue to blind-play cards to fulfill the initial _Finesse_ (if the card clued with a _Fix Clue_ seems to be unrelated).
 - Note that since we want to minimize _Lying_ as much as possible, _Finesses with a Lie Component_ have the **lowest possible precedence**. For example, this means that you can give a _Delayed Play Clue_ to a player who is still blind-playing cards without it looking like a _Fix Clue_.
@@ -228,6 +228,6 @@ import InvertedPriorityFinesse from "./special-finesses/inverted-priority-finess
   - Both color and rank would only touch the specific card.
   - Both color and rank would communicate the exact identity of the specific card.
   - Both color and rank would not give any useful negative information to the other cards in the hand.
-- In these situations, the player giving the clue has a completely free choice between rank and color. We agree that by default, players should use color to save the card.
+- In these situations, the player giving the clue has a completely _Free Choice_ between rank and color. We agree that by default, players should use color to save the card.
 - If players instead use a rank clue to save the card, this communicates a _Rank Choice Save Finesse_.
 - In the same way, it is also possible to perform a _Rank Choice Save Bluff_.

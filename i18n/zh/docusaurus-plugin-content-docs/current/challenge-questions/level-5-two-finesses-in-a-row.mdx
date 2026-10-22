@@ -1,0 +1,47 @@
+---
+title: 同时进行两次飞牌
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-5-two-finesses-in-a-row/question.yml";
+import Answer from "./level-5-two-finesses-in-a-row/answer.yml";
+
+<ChallengeQuestionProgress level={5} id="level-5-two-finesses-in-a-row" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 这是游戏的第一回合。
+- Alice 提示 Donald 蓝色，触及 2 号位的蓝 3。
+- 这是对 Bob 的*双重飞牌*，所以 Bob 盲打作为蓝 1 的 1 号位的牌。
+- 接着，Cathy 提示 Donald 红色，触及 3 号位的红 2。
+- Alice 手中没有任何红色牌。
+- Bob 从这次提示中应写什么笔记？
+- Bob 接下来要做什么？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- 因为 Bob 没有看到缺失的红 1，红 1 一定在他手中。
+- 因此，根据[_依序飞牌_](../level-5.mdx#the-queued-finesse)，他又被*飞*了一次。
+- 他不知道原本的蓝*飞*是不是[_多层飞牌_](../level-5.mdx#the-layered-finesse)。
+- 所以，他必须标记他 2 号位的牌是红 1 或蓝 2。
+  - 如果 2 号位的牌是红 1，那么 Alice 的提示是*多层飞牌*，Cathy 的提示是“普通”的*出牌提示*，说明 Bob的 3 号位是蓝 2。
+  - 如果 2 号位的牌是蓝 2，那么 Alice 的提示是*双重飞牌*，Cathy 的提示是“普通”的*依序飞牌*，说明 Bob的 1 号位是红 1。
+- 这种情况下，Bob 必须先盲打他 2 号位的牌，并根据牌是信息更新笔记。
+- 注意，也有可能 Bob 的 2 号位是一张无关的可打出的牌，例如黄 1。这张情况可能性较小，但如果真是这样，这说明他的 3 号位有另一张可打出的牌。然而，默认情况下，Bob 知道他无需考虑这种事情。（如果这确实发生了，Bob 需相应更新笔记。）
+
+<Answer />
+
+</TabItem>
+</Tabs>

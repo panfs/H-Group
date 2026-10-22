@@ -1,0 +1,37 @@
+---
+title: 反向飞牌（问题 2）
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-2-reverse-ii/question.yml";
+import Answer from "./level-2-reverse-ii/answer.yml";
+
+<ChallengeQuestionProgress level={2} id="level-2-reverse-ii" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- Alice 提示 Bob 数字 4，提示到了 5 号位的绿 4。
+- Bob 从 4 号位弃掉了一张废牌。
+- 从 Cathy 的角度来看，Alice 的提示是[_反向飞牌_](../level-2.mdx#the-reverse-finesse)吗？为什么？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- 是的，这是*反向飞牌*。
+- 绿 4 不是关键牌，因此这个 4 提示不可能是*留牌提示*。因此，它一定是*出牌提示*。Cathy 被保证有一张绿 3 来使绿 4 可打出。
+
+<Answer />
+
+</TabItem>
+</Tabs>

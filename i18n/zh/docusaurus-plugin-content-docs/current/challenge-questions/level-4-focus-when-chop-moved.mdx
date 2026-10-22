@@ -1,0 +1,51 @@
+---
+title: 弃牌位移过的焦点
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-4-focus-when-chop-moved/question.yml";
+import Answer from "./level-4-focus-when-chop-moved/answer.yml";
+
+<ChallengeQuestionProgress level={4} id="level-4-focus-when-chop-moved" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 所有 1 都打出。
+- Alice 提示 Cathy 的数字 1 ，仅提示到 3 号位。（这是一个*垃圾弃牌位移动*）。
+- Bob 提示 Cathy 的蓝色，触碰了 Bob 手中的*所有*牌。
+- Cathy 的牌上应该写下什么笔记？
+- Cathy 接下来应该做什么？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- Alice 的*垃圾弃牌位移动*将 Cathy 的弃牌位移到 2 号位。
+- Bob 的提示是正常的*弃牌位焦点*，并且焦点在 2 号位。
+- 弃牌堆中没有蓝色牌，所以这是一个蓝色 2 的*打出提示*。
+- 3 号位的蓝色 1 仍然是废牌。
+- 其他蓝色牌是根据*良好触碰原则*假设为蓝色 3、4 和 5，但顺序未知。
+- 4 号位和 5 号位不再*弃牌位移过*，因为它们现在已经被提示过。
+- Cathy 应该打出蓝色 2。
+- After Alice's _Trash Chop Move_, Cathy's chop moved to slot 2.
+- Bob's clue has normal _Chop Focus_, and is focused on slot 2.
+- There are no blue cards in the discard pile, so it is a _Play Clue_ on a blue 2.
+- The blue 1 on slot 3 is still trash.
+- The other blue cards are from _Good Touch Principle_ assumed to be blue 3, 4 and 5, but the order is not known.
+- Slot 4 and slot 5 are no longer _Chop Moved_, as they now have been touched by a clue.
+- Cathy should play the blue 2.
+
+<Answer />
+
+</TabItem>
+</Tabs>

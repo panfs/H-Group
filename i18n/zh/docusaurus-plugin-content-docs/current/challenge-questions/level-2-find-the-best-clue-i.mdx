@@ -1,0 +1,38 @@
+---
+title: 最佳提示（问题 1）
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-2-find-the-best-clue-i/question.yml";
+import Answer from "./level-2-find-the-best-clue-i/answer.yml";
+
+<ChallengeQuestionProgress level={2} id="level-2-find-the-best-clue-i" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- Bob 手中有一张未知的蓝牌。
+- Cathy 手中有一张未知的 2。
+- Alice 可以给出的最佳提示是什么？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- Alice 只有一个合理的提示：提示 Cathy 数字 2。
+- Alice 不能提示红 3（无论用颜色还是数字）来发起[_反向飞牌_](../level-2.mdx#the-reverse-finesse)，因为 Cathy 会认为这是*引牌*而非*飞牌*，并会打出未知的 2 作为红 2。
+- Alice 应避免提示 Cathy 红色，因为这会违反[_良触原则_](../beginner/good-touch-principle.mdx)，触及废牌红 1。
+
+<Answer />
+
+</TabItem>
+</Tabs>

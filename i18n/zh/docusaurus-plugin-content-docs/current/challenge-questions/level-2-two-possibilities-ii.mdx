@@ -1,0 +1,44 @@
+---
+title: 两种可能（问题 2）
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-2-two-possibilities-ii/question.yml";
+import Answer from "./level-2-two-possibilities-ii/answer.yml";
+
+<ChallengeQuestionProgress level={2} id="level-2-two-possibilities-ii" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- Alice 提示 Bob 数字 3，仅提示到 4 号位。这张牌上有红色和绿色的否定信息。
+- Bob 在牌上写下了关于其可能性的笔记。
+
+1. Bob 会写下什么*笔记*？
+1. Bob 应该采取什么行动？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+1. Bob 会写下“黄 3、蓝 3、紫 3”。
+   - Bob 知道这一定是对他的 3 的*出牌提示*，因为它不在弃牌位。由于没有 2 被打出，这张 3 不能直接打出。通常，这看起来像是对 Cathy 的绿 2 的*反向飞牌*，但由于 Bob 的 3 有绿色的否定信息，所以不可能。
+   - 因此，这一定是 [_自我飞牌_](../level-2.mdx#the-self-finesse) ，Bob 必然持有能让他的 3 可打出的 2。
+   - Bob 在打出*飞牌位*前，无法确切知道哪张 3 是可打出的。
+1. Bob 需要立即盲打*飞牌位*，以表明他（而不是 Cathy）有相连的 2。
+   - Cathy 的弃牌位是废牌，不需要留牌。
+   - 在打出 2 后，Bob 应该将他的 3 标记为与打出的 2 相同的颜色。
+
+<Answer />
+
+</TabItem>
+</Tabs>

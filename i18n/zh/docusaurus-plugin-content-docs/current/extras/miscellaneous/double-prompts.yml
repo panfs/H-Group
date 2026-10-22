@@ -14,17 +14,19 @@ players:
       - type: x
   - cards:
       - type: bm
-        above: Rainbow 3
+        middleNote: m3
+        below: Prompt
       - type: x
       - type: m
-        above: Rainbow 2
+        middleNote: m2
+        below: Prompt
       - type: x
       - type: x
   - cards:
       - type: x
       - type: x
       - type: x
-      - type: x
+      - type: m4
         clue: 4
-        above: Rainbow 4
+        below: Play
       - type: x

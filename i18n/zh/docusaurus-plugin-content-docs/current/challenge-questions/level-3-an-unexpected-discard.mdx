@@ -1,0 +1,43 @@
+---
+title: 非预期的弃牌
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-3-an-unexpected-discard/question.yml";
+import Answer from "./level-3-an-unexpected-discard/answer.yml";
+
+<ChallengeQuestionProgress level={3} id="level-3-an-unexpected-discard" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 红 2 和蓝 2 均被打出。
+- Alice 手中有一张所有人已知的蓝 3。
+- Bob 和 Cathy 手中分别有两张被提示过的 3。
+- 在 Alice 的回合，Alice 弃掉蓝 3。
+- 为什么 Alice 弃掉蓝 3，而不是打出它？
+- Bob, Cathy, 和 Donald 分别应作什么笔记？具体说明。
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- Alice 意识到她手中的蓝 3 重复了。她应该*讽刺性*地弃掉这张牌。
+- 这说明有其他人持有弃掉的牌。
+- 因为蓝 3 只有另外一个相同牌。所以，所有玩家都知道了谁持有这张牌。
+- Cathy 在任何地方没有看到蓝 3，所以她在她的两张牌写下 “蓝 3？” 的笔记。（讽刺性弃牌不保证牌在特定的位置）
+- Bob 和 Donald 看到蓝 3 在 Cathy 手中，他们也应该在 Cathy 的两张 3 上面写下“蓝 3？” 的笔记。
+
+<Answer />
+
+</TabItem>
+</Tabs>

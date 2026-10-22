@@ -1,0 +1,37 @@
+---
+title: 只剩 5 张牌
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-8-5-cards-left/question.yml";
+import Answer from "./level-8-5-cards-left/answer.yml";
+
+<ChallengeQuestionProgress level={8} id="level-8-5-cards-left" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 牌堆里只剩下 5 张牌，且仅有 1 个提示机会。唯一提示过的牌是 Alice 的 5。
+- Alice 应该采取什么行动？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- 对 Alice 而言，提示 Cathy 红色很诱人，这会*飞*红 4。但是这样做会输掉游戏。
+- 这是因为 Alice 有可能抽到蓝 5 和紫 5。如果她抽到了，那么她总共要打出 4 张牌。如果 Alice 在这一回合给出提示，那么将不可能打出所有 4 张牌（因为游戏会结束）。
+- 相反，Alice 应该打出黄 5 或绿 5，让 Bob 留红 5，而 Cathy 提示红 4。
+
+<Answer />
+
+</TabItem>
+</Tabs>

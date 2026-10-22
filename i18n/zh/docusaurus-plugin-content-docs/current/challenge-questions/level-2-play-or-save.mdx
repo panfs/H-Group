@@ -1,0 +1,45 @@
+---
+title: 打出还是留牌？
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-2-play-or-save/question.yml";
+import Answer from "./level-2-play-or-save/answer.yml";
+
+<ChallengeQuestionProgress level={2} id="level-2-play-or-save" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: 'Question', value: 'question'},
+    {label: 'Solution', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- Alice 提示 Bob 数字 3，提示到了 3 号位和 5 号位。
+- 这是一个*弃牌位焦点的提示*，意味着 5 号位是焦点。
+- Bob 在两张牌上都写下了笔记。
+
+1. Bob 会在每张牌上写下什么*笔记*？
+2. Bob 应该采取什么行动？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+1. Bob 会在 5 号位的牌上写下“红 3”，在 3 号位的牌上写下“黄 3、绿 3、蓝 3、紫 3”。
+   - 由于 Bob 收到了*弃牌位焦点的提示*，他应将其视为*出牌提示*或*留牌提示*。
+   - 然而，没有直接可打出的 3，所以这不可能是直接的*出牌提示*。
+   - 弃牌堆中唯一的 3 是红 3，因此这一定是对红 3 的*留牌提示*。
+   - 这不可能是[_自我飞牌_](../level-2.mdx#the-self-finesse)，因为 Alice 会期望 Bob 将此提示视为对红 3 的*留牌提示*。
+   - 这不可能是[_反向飞牌_](../level-2.mdx#the-reverse-finesse)。即使 Cathy 的*飞牌位*上有一张红 2，Cathy 也会将触及弃牌位关键红 3 的提示视为*留牌提示*。因此，她不会由于 Alice 的提示盲打任何牌。
+1. 假设 Alice 手中没有有意思的牌，Bob 应该提示 Cathy 数字 2，作为对红 2 的*出牌提示*。（提示数字 2 比提示红色更好，因为它可以“免费”获取紫 2。）
+
+<Answer />
+
+</TabItem>
+</Tabs>

@@ -1,0 +1,42 @@
+---
+title: Alice 爱垃圾
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-7-alice-loves-garbage/question.yml";
+import Answer from "./level-7-alice-loves-garbage/answer.yml";
+
+<ChallengeQuestionProgress level={7} id="level-7-alice-loves-garbage" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 所有的 2 都打出。
+- 现在没有任何提示机会。
+- Alice 手上有一张全员已知的黄 2。
+- Alice 决定保留她的废牌，而是丢弃了她的弃牌位上的牌。
+- Alice 在发送什么信号？ Bob 应该做什么？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- Alice 正在执行[_尖叫弃牌位移动（带已知废牌）_](../level-7.mdx#the-scream-discard-chop-move-with-known-trash)。
+- 通常，玩家应该在弃掉他们的已知废牌之前弃掉他们的弃牌位上的牌。
+- 通过弃掉她的弃牌位上的牌而不是已知废牌， Alice 正在发出一个信号，表明情况非常糟糕——具体来说， Bob 的弃牌位是关键或可打的。
+- Bob 应该将他的弃牌位永久移动一个位置，并在他的第 4 个位置上写下 “cm” 来标记为 _弃牌位移过_。
+- Bob 在这个回合不允许弃牌。相反，他**必须**给出一个提示。
+
+<Answer />
+
+</TabItem>
+</Tabs>

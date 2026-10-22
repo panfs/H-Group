@@ -77,7 +77,7 @@ function translateContentSubObject<
 }
 
 function parseTranslationInt(s: string | undefined): number | undefined {
-  return s === undefined ? undefined : Number.parseInt(s, 10);
+  return s === undefined ? undefined : Math.trunc(Number(s));
 }
 
 export default function hanabiDocusaurusPlugin(
@@ -86,138 +86,213 @@ export default function hanabiDocusaurusPlugin(
   return {
     name: "hanabi-docusaurus-plugin",
 
-    loadContent() {
+    loadContent: () => ({
+      clueGiver: "Clue Giver",
+      unknown: "Unknown",
+      color: {
+        red: "red",
+        yellow: "yellow",
+        black: "black",
+        purple: "purple",
+        blue: "blue",
+        green: "green",
+        rainbow: "rainbow",
+        pink: "pink",
+        focus: "focus",
+        play: "play",
+        chop: "chop",
+        fresh: "fresh",
+        bad: "bad",
+        brown: "brown",
+      },
+      shortColor: {
+        red: "(R)",
+        blue: "(B)",
+        green: "(G)",
+        yellow: "(Y)",
+        purple: "(P)",
+      },
+      bigText: {
+        Bluff: "Bluff",
+        Finesse: "Finesse",
+        "Illegal!": "Illegal!",
+      },
+      Rainbow: {
+        text: "Rainbow",
+        extraWidth: 21,
+        decreaseOffset: 13,
+      },
+      textExpansion: {
+        sp: "Save or\nPlay",
+        op: "Occupied\nPlay",
+        cm: "Chop\nMove",
+      },
+    }),
+
+    configureWebpack(_config, _isServer, _utils, contents) {
+      let { baseUrl } = context;
+      if (baseUrl.endsWith("/")) {
+        baseUrl = baseUrl.slice(0, -1);
+      }
+
       return {
-        clueGiver: "Clue Giver",
-        unknown: "Unknown",
-        color: {
-          red: "red",
-          yellow: "yellow",
-          black: "black",
-          purple: "purple",
-          blue: "blue",
-          green: "green",
-          rainbow: "rainbow",
-          pink: "pink",
-          focus: "focus",
-          play: "play",
-          chop: "chop",
-          fresh: "fresh",
-          bad: "bad",
-          brown: "brown",
-        },
-        shortColor: {
-          red: "(R)",
-          blue: "(B)",
-          green: "(G)",
-          yellow: "(Y)",
-          purple: "(P)",
-        },
-        bigText: {
-          Bluff: "Bluff",
-          Finesse: "Finesse",
-          "Illegal!": "Illegal!",
-        },
-        Rainbow: {
-          text: "Rainbow",
-          extraWidth: 21,
-          decreaseOffset: 13,
-        },
-        textExpansion: {
-          sp: "Save or\nPlay",
-          op: "Occupied\nPlay",
-          cm: "Chop\nMove",
+        module: {
+          rules: [
+            {
+              test: /\.yml$/v,
+              use: [
+                // Convert the SVG to a React component:
+                // https://react-svgr.com/
+                {
+                  loader: "@svgr/webpack",
+                  options: {
+                    /**
+                     * We add the "example" class to every SVG so that the text will respect the
+                     * light/dark theme.
+                     *
+                     * @see https://react-svgr.com/docs/options/#svg-props
+                     * @see ./src/css/custom.css
+                     */
+                    svgProps: {
+                      className: "example",
+                    },
+
+                    /**
+                     * By default, SVGR will use the SVG Optimizer on the output. However, SVGO will
+                     * mess up the class names, so we have to use the "prefixIds" plugin:
+                     * https://svgo.dev/docs/plugins/prefixIds/
+                     *
+                     * Furthermore, if we specify an SVGO config, it will remove all optimizations,
+                     * so we have to first extend from the default presets.
+                     */
+                    svgoConfig: {
+                      plugins: [
+                        {
+                          name: "preset-default",
+                          params: {
+                            overrides: {
+                              // We must keep the view box to preserve the behavior of automatically
+                              // resizing the images as the window size changes.
+                              removeViewBox: false,
+                            },
+                          },
+                        },
+                        {
+                          name: "prefixIds",
+                          params: {
+                            prefixClassNames: false,
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+
+                // Generate an SVG based on the YAML file. (This must be after "@svgr/webpack".)
+                {
+                  // Webpack loaders do not support TypeScript, so the plugin must be transpiled to
+                  // a JavaScript file.
+                  loader: path.join(
+                    importMetaDirname,
+                    "plugin",
+                    "dist",
+                    "convertYAMLToSVG.js",
+                  ),
+                  options: {
+                    baseUrl,
+                    translations: contents,
+                  },
+                },
+              ],
+            },
+          ],
         },
       };
     },
 
-    // eslint-disable-next-line complete/no-mutable-return
-    getTranslationFiles({ content }) {
-      return [
-        {
-          path: "svg",
-          content: Object.fromEntries([
-            [
-              "clueGiver",
-              {
-                message: "Clue Giver",
-              } as const,
-            ],
-            [
-              "unknown",
-              {
-                message: "Unknown",
-                description: "Name of unknown player",
-              } as const,
-            ],
-            ...Object.keys(content.color).map(
-              (k) =>
-                [
-                  `color.${k}`,
-                  { message: k, description: `Lowercase of ${k}` },
-                ] as const,
-            ),
-            ...Object.keys(content.shortColor).map(
-              (k) =>
-                [
-                  `shortColor.${k}`,
-                  {
-                    message: `(${k.charAt(0).toUpperCase()})`,
-                  } as TranslationMessage,
-                ] as const,
-            ),
-            ...Object.keys(content.bigText).map(
-              (k) =>
-                [`bigText.${k}`, { message: k } as TranslationMessage] as const,
-            ),
-            [
-              "Rainbow.text",
-              {
-                message: "Rainbow",
-                description: "Start of Rainbow text boxes",
-              } as const,
-            ],
-            [
-              "Rainbow.extraWidth",
-              {
-                message: "21",
-                description:
-                  "Numerical extra width of text boxes starting with Rainbow.text",
-              } as const,
-            ],
-            [
-              "Rainbow.decreaseOffset",
-              {
-                message: "13",
-                description:
-                  "Numerical decrease of offset of text boxes starting with Rainbow.text",
-              } as const,
-            ],
-            [
-              "textExpansion.sp",
-              {
-                message: "Save or\nPlay",
-                description: "Shortcut for save or play",
-              } as const,
-            ],
-            [
-              "textExpansion.op",
-              {
-                message: "Occupied\nPlay",
-                description: "Shortcut for occupied play",
-              } as const,
-            ],
-            [
-              "textExpansion.cm",
-              {
-                message: "Chop\nMove",
-                description: "Shortcut for chop move",
-              } as const,
-            ],
-          ]),
-        },
-      ];
-    },
+    getTranslationFiles: ({ content }) => [
+      {
+        path: "svg",
+        content: Object.fromEntries<TranslationMessage>([
+          [
+            "clueGiver",
+            {
+              message: "Clue Giver",
+            } as const,
+          ],
+          [
+            "unknown",
+            {
+              message: "Unknown",
+              description: "Name of unknown player",
+            } as const,
+          ],
+          ...Object.keys(content.color).map(
+            (k) =>
+              [
+                `color.${k}`,
+                { message: k, description: `Lowercase of ${k}` },
+              ] as const,
+          ),
+          ...Object.keys(content.shortColor).map(
+            (k) =>
+              [
+                `shortColor.${k}`,
+                {
+                  message: `(${k.charAt(0).toUpperCase()})`,
+                },
+              ] as const,
+          ),
+          ...Object.keys(content.bigText).map(
+            (k) => [`bigText.${k}`, { message: k }] as const,
+          ),
+          [
+            "Rainbow.text",
+            {
+              message: "Rainbow",
+              description: "Start of Rainbow text boxes",
+            } as const,
+          ],
+          [
+            "Rainbow.extraWidth",
+            {
+              message: "21",
+              description:
+                "Numerical extra width of text boxes starting with Rainbow.text",
+            } as const,
+          ],
+          [
+            "Rainbow.decreaseOffset",
+            {
+              message: "13",
+              description:
+                "Numerical decrease of offset of text boxes starting with Rainbow.text",
+            } as const,
+          ],
+          [
+            "textExpansion.sp",
+            {
+              message: "Save or\nPlay",
+              description: "Shortcut for save or play",
+            } as const,
+          ],
+          [
+            "textExpansion.op",
+            {
+              message: "Occupied\nPlay",
+              description: "Shortcut for occupied play",
+            } as const,
+          ],
+          [
+            "textExpansion.cm",
+            {
+              message: "Chop\nMove",
+              description: "Shortcut for chop move",
+            } as const,
+          ],
+        ]),
+      },
+    ],
 
     translateContent({ content, translationFiles }) {
       const translationFile = translationFiles.find((f) => f.path === "svg");
@@ -252,87 +327,6 @@ export default function hanabiDocusaurusPlugin(
           content,
           translationFile,
         ),
-      };
-    },
-
-    configureWebpack(_config, _isServer, _utils, contents) {
-      let { baseUrl } = context;
-      if (baseUrl.endsWith("/")) {
-        baseUrl = baseUrl.slice(0, -1);
-      }
-
-      return {
-        module: {
-          rules: [
-            {
-              test: /\.yml$/,
-              use: [
-                // Convert the SVG to a React component:
-                // https://react-svgr.com/
-                {
-                  loader: "@svgr/webpack",
-                  options: {
-                    /**
-                     * We add the "example" class to every SVG so that the text will respect the
-                     * light/dark theme.
-                     *
-                     * @see https://react-svgr.com/docs/options/#svg-props
-                     * @see ./src/css/custom.css
-                     */
-                    svgProps: {
-                      className: "example",
-                    },
-
-                  /**
-                   * By default, SVGR will use the SVG Optimizer on the output. However, SVGO will
-                   * mess up the class names, so we have to use the "prefixIds" plugin:
-                   * https://svgo.dev/docs/plugins/prefixIds/
-                   *
-                   * Furthermore, if we specify an SVGO config, it will remove all optimizations, so
-                   * we have to first extend from the default presets.
-                   */
-                  svgoConfig: {
-                    plugins: [
-                      {
-                        name: "preset-default",
-                        params: {
-                          overrides: {
-                            // We must keep the view box to preserve the behavior of automatically
-                            // resizing the images as the window size changes.
-                            removeViewBox: false,
-                          },
-                        },
-                      },
-                      {
-                        name: "prefixIds",
-                        params: {
-                          prefixClassNames: false,
-                        },
-                      },
-                    ],
-                  },
-                },
-              },
-
-                // Generate an SVG based on the YAML file. (This must be after "@svgr/webpack".)
-                {
-                  // Webpack loaders do not support TypeScript, so the plugin must be transpiled to
-                  // a JavaScript file.
-                  loader: path.join(
-                    importMetaDirname,
-                    "plugin",
-                    "dist",
-                    "convertYAMLToSVG.js",
-                  ),
-                  options: {
-                    baseUrl,
-                    translations: contents,
-                  },
-                },
-              ],
-            },
-          ],
-        },
       };
     },
   };

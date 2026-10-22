@@ -1,0 +1,43 @@
+---
+title: 反向飞牌（问题 3）
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-2-reverse-iii/question.yml";
+import Answer from "./level-2-reverse-iii/answer.yml";
+
+<ChallengeQuestionProgress level={2} id="level-2-reverse-iii" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- Alice 提示 Bob 数字 3，仅提示到 2 号位。
+- Bob 在牌上写下了关于其可能性的笔记。
+
+1. Bob 会写下什么*笔记*？
+1. Bob 应该采取什么行动？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+1. Bob 会写下“红 3、蓝 3、若紫 2 被飞则为紫 3”。
+   - Bob 知道这一定是对他的 3 的*出牌提示*，因为它不在弃牌位。它可能是立即可打出的红 3 或蓝 3，但也可能是对紫 3 的*反向飞牌*。
+1. Bob 必须考虑*反向飞牌*的 possibility。目前，Bob 需要提示 Cathy 绿色，这将是对关键绿 3 的*留关键牌提示*。
+   - 如果 Cathy 盲打紫 2，Bob 会将笔记更新为“红 3、蓝 3、若紫 2 被飞则为紫 3 | 紫 3”。
+   - 如果 Cathy 没有盲打紫 2，Bob 会将笔记更新为“红 3、蓝 3、若紫 2 被飞则为紫 3 | 红 3，蓝 3”。
+   - （这不可能是 [_自我飞牌_](../level-2.mdx#the-self-finesse) ，因为 Bob 知道，如果可能解释为直接的*出牌提示*，就不能给出*自我飞牌*。此场景下，提示到的牌可能是立即可打出的红 3 或蓝 3。）
+
+<Answer />
+
+</TabItem>
+</Tabs>

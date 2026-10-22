@@ -1,0 +1,44 @@
+---
+title: 节奏还是垃圾？
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-6-tempo-or-trash/question.yml";
+import Answer from "./level-6-tempo-or-trash/answer.yml";
+
+<ChallengeQuestionProgress level={6} id="level-6-tempo-or-trash" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 红 2 已经打出。
+- Alice 的 3 号位有一张红牌，保证为可打出的红 4。
+- Bob 有一张未知的 5，在弃牌位上保留过。
+- Cathy 的 2 号位有一张红牌，保证为可打出的红 3。
+- Alice 向 Bob 给出一个红色提示，提示到 1 号位的一张红牌，且填补了 5 号位之前颜色未知的红 5。
+- 在 Bob 的回合，他应该采取什么行动？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- 在此场景中，红色提示的焦点存在歧义：
+  - 如果红色提示聚焦在“新”的 1 号位上，那么焦点就会是*废牌*，所以得到的行动会是对 2、3、4 号位的[_垃圾弃牌位移动_](../level-4.mdx#the-trash-chop-move-tcm)。
+  - 如果红色提示聚焦在已经提示过的 5 号位上，那么焦点就会是之前不知道可打出的红 5，所以得到的行动会是对 4 号位的[_节奏提示弃牌位移动_](../level-6.mdx#the-tempo-clue-chop-move-tccm)。
+  - Bob 也知道*节奏提示弃牌位移动*优先于*垃圾弃牌位移动*。
+  - 因此，在此场景中，Bob 只应该*将弃牌位移过* 4 号位。
+  - Bob 在 4 号位上写下“cm”，然后继续给出无关的提示或弃掉 1 号位。
+
+<Answer />
+
+</TabItem>
+</Tabs>

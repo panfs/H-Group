@@ -1,0 +1,40 @@
+---
+title: 虚空尖叫
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-7-screaming-into-the-void/question.yml";
+import Answer from "./level-7-screaming-into-the-void/answer.yml";
+
+<ChallengeQuestionProgress level={7} id="level-7-screaming-into-the-void" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 所有的 2 都打出。
+- 现在没有任何提示机会。
+- Alice 手上有一张全员已知的绿色 3。
+- Bob 的手牌从最新到最旧依次为：“黄 3（全员已知）、红 2、蓝 4、紫 5”。
+- Alice 在这个回合应该做什么？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- Alice 应该打出她的绿色 3。
+- 由于 Bob 可以打出他的黄色 3，所以紫色 5 不会立即面临被弃掉的危险。
+- Alice 执行[_尖叫弃牌_](../level-7.mdx#the-scream-discard-chop-move-sdcm)是不合法的，因为那只应该在万不得已的情况下使用，而由于 Bob 预计在这个回合打出黄色 3，所以这不会是万不得已的情况。
+
+<Answer />
+
+</TabItem>
+</Tabs>

@@ -62,5 +62,37 @@
   "sidebar.mainSidebar.category.Challenge Questions": {
     "message": "挑战题",
     "description": "The label for category 'Challenge Questions' in sidebar 'mainSidebar'"
+  },
+  "sidebar.mainSidebar.category.Level 2": {
+    "message": "等级 2",
+    "description": "The label for category 'Level 2' in sidebar 'mainSidebar'"
+  },
+  "sidebar.mainSidebar.category.Level 3": {
+    "message": "等级 3",
+    "description": "The label for category 'Level 3' in sidebar 'mainSidebar'"
+  },
+  "sidebar.mainSidebar.category.Level 4": {
+    "message": "等级 4",
+    "description": "The label for category 'Level 4' in sidebar 'mainSidebar'"
+  },
+  "sidebar.mainSidebar.category.Level 5": {
+    "message": "等级 5",
+    "description": "The label for category 'Level 5' in sidebar 'mainSidebar'"
+  },
+  "sidebar.mainSidebar.category.Level 6": {
+    "message": "等级 6",
+    "description": "The label for category 'Level 6' in sidebar 'mainSidebar'"
+  },
+  "sidebar.mainSidebar.category.Level 7": {
+    "message": "等级 7",
+    "description": "The label for category 'Level 7' in sidebar 'mainSidebar'"
+  },
+  "sidebar.mainSidebar.category.Level 8": {
+    "message": "等级 8",
+    "description": "The label for category 'Level 8' in sidebar 'mainSidebar'"
+  },
+  "sidebar.mainSidebar.category.More Examples": {
+    "message": "更多示例",
+    "description": "The label for category 'More Examples' in sidebar 'mainSidebar'"
   }
 }

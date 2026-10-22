@@ -1,0 +1,39 @@
+---
+title: Playing Multiple 1's, III
+---
+
+import ChallengeQuestionProgress from "@site/src/challengeQuestions.tsx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Question from "./level-3-playing-multiple-1-s-iii/question.yml";
+import Answer from "./level-3-playing-multiple-1-s-iii/answer.yml";
+
+<ChallengeQuestionProgress level={3} id="level-3-playing-multiple-1-s-iii" />
+
+<Tabs
+  queryString="tab"
+  defaultValue="question"
+  values={[
+    {label: '题目', value: 'question'},
+    {label: '解答', value: 'solution'},
+  ]}>
+<TabItem value="question">
+
+- 现在是游戏的第一回合。
+- Alice 提示 Cathy 数字 1，触及 3 号位和 4 号位。
+- 很快，Bob 提示 Cathy 数字 1，触及同样两张牌。
+- Bob 应以怎样的顺序打出这些牌？
+
+<Question />
+
+</TabItem>
+<TabItem value="solution">
+
+- Alice 告诉 Cathy 从右到左打出这些 1。
+- Bob 的提示是一个*修正提示（不提供额外信息）*。
+- 这说明 Cathy*不*应该打出预期的牌（4 号位），而是跳到 3 号位并打出这张牌。
+
+<Answer />
+
+</TabItem>
+</Tabs>
